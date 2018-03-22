@@ -11,11 +11,18 @@ class Wheel extends React.Component {
     sections: PropTypes.array.isRequired,
     turnsByShuffle: PropTypes.number,
     size: PropTypes.number,
+    selectedIndex: PropTypes.number.isRequired,
+    selectedIndexes: PropTypes.array.isRequired,
+    updateSelectedIndex: PropTypes.func.isRequired,
+    resetSelectedIndexes: PropTypes.func.isRequired,
+    updateRotation: PropTypes.func.isRequired,
+    rotation: PropTypes.number,
   };
 
   static defaultProps = {
     turnsByShuffle: 10,
     size: 600, // in pixels
+    rotation: 0,
   };
 
   constructor(props) {
@@ -25,30 +32,27 @@ class Wheel extends React.Component {
     this.reset = this.reset.bind(this);
 
     this.state = {
-      selectedIndex: 0,
-      selectedIndexes: [],
-      rotation: 0,
       playSound: Sound.status.STOPPED,
     };
   }
 
   shuffleSection() {
-    const previousSelectedIndex = this.state.selectedIndex;
+    const previousSelectedIndex = this.props.selectedIndex;
     const possibleSections = this.props.sections.filter(
-      (section, index) => !this.state.selectedIndexes.includes(index)
+      (section, index) => !this.props.selectedIndexes.includes(index)
     );
 
     const selectedSection = possibleSections[Math.floor(Math.random() * Math.floor(possibleSections.length))];
     const selectedIndex = this.props.sections.indexOf(selectedSection);
 
-    const newRotation = this.state.rotation + this.props.turnsByShuffle * 360;
+    const newRotation = this.props.rotation + this.props.turnsByShuffle * 360;
     const rotation = newRotation + (selectedIndex - previousSelectedIndex) * (360 / this.props.sections.length);
+
+    this.props.updateSelectedIndex(selectedIndex);
+    this.props.updateRotation(rotation);
 
     this.setState(
       {
-        selectedIndex,
-        rotation,
-        selectedIndexes: [...this.state.selectedIndexes, selectedIndex],
         playSound: Sound.status.PLAYING,
       },
       () => {
@@ -61,20 +65,18 @@ class Wheel extends React.Component {
   }
 
   reset() {
-    this.setState({
-      selectedIndexes: [],
-    });
+    return this.props.resetSelectedIndexes();
   }
 
   render() {
     return (
       <Wrapper size={this.props.size}>
-        {this.state.selectedIndexes.length > 0 && <Reset onClick={this.reset}>reset</Reset>}
-        {this.state.selectedIndexes.length < this.props.sections.length && <Trigger onClick={this.shuffleSection} />}
+        {this.props.selectedIndexes.length > 0 && <Reset onClick={this.reset}>reset</Reset>}
+        {this.props.selectedIndexes.length < this.props.sections.length && <Trigger onClick={this.shuffleSection} />}
 
         <Sound url={RollingSound} playStatus={this.state.playSound} />
 
-        <Circle turn={this.state.rotation * -1} size={this.props.size}>
+        <Circle turn={this.props.rotation * -1} size={this.props.size}>
           {this.props.sections.map((section, index) => (
             <WheelSection
               key={section.label}
@@ -82,7 +84,7 @@ class Wheel extends React.Component {
               section={section}
               length={this.props.sections.length}
               wheelSize={this.props.size}
-              disabled={this.state.selectedIndexes.includes(index) && this.state.selectedIndex !== index}
+              disabled={this.props.selectedIndexes.includes(index) && this.props.selectedIndex !== index}
             />
           ))}
         </Circle>
@@ -125,5 +127,5 @@ const Circle = styled.div`
   border-radius: ${props => props.size}px;
   overflow: hidden;
   transform: rotate(${props => props.turn}deg);
-  transition: transform 7s cubic-bezier(0.39, 0.25, 0, 1.05);
+  transition: transform ${props => (props.turn === 0 ? '0s' : '7s')} cubic-bezier(0.39, 0.25, 0, 1.05);
 `;

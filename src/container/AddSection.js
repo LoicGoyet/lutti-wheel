@@ -4,7 +4,7 @@ import * as sectionsActions from '../ducks/sections';
 import AddSectionForm from '../components/AddSectionForm';
 
 const mapStatetoProps = (state, ownProps) => ({
-  section: state.sections[ownProps.index],
+  section: state.sections.data[ownProps.index],
 });
 
 const mapDispatchToProps = dispatch => ({
