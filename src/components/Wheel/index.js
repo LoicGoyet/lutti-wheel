@@ -10,8 +10,6 @@ class Wheel extends React.Component {
         this.shuffleSection = this.shuffleSection.bind(this)
         this.reset = this.reset.bind(this)
 
-        this.sections = this.props.sections
-
         this.state = {
             selectedIndex: 0,
             selectedIndexes: [],
@@ -21,13 +19,13 @@ class Wheel extends React.Component {
 
     shuffleSection() {
         const previousSelectedIndex = this.state.selectedIndex;
-        const possibleSections = this.sections.filter((section, index) => !this.state.selectedIndexes.includes(index));
+        const possibleSections = this.props.sections.filter((section, index) => !this.state.selectedIndexes.includes(index));
 
         const selectedSection = possibleSections[(Math.floor(Math.random() * Math.floor(possibleSections.length)))];
-        const selectedIndex = this.sections.indexOf(selectedSection);
+        const selectedIndex = this.props.sections.indexOf(selectedSection);
 
         const newRotation = this.state.rotation + this.props.turnsByShuffle * 360;
-        const rotation = newRotation + (selectedIndex - previousSelectedIndex) * (360 / this.sections.length);
+        const rotation = newRotation + (selectedIndex - previousSelectedIndex) * (360 / this.props.sections.length);
         
         this.setState({
           selectedIndex,
@@ -45,15 +43,15 @@ class Wheel extends React.Component {
     render() {
         return <Wrapper size={this.props.size}>
             {this.state.selectedIndexes.length > 0 && <Reset onClick={this.reset}>reset</Reset>}
-            {this.state.selectedIndexes.length < this.sections.length && <Trigger onClick={this.shuffleSection} />}
+            {this.state.selectedIndexes.length < this.props.sections.length && <Trigger onClick={this.shuffleSection} />}
 
             <Circle turn={this.state.rotation * -1} size={this.props.size}>
-              {this.sections.map((section, index) => (
+              {this.props.sections.map((section, index) => (
                 <WheelSection
                   key={index}
                   index={index}
                   section={section}
-                  length={this.sections.length}
+                  length={this.props.sections.length}
                   wheelSize={this.props.size}
                   disabled={
                     this.state.selectedIndexes.includes(index) &&

@@ -8,8 +8,5 @@ const mapStatetoProps = state => ({
     sections: state.sections
 })
 
-// const mapDispatchToProps = dispatch => ({
-//     addItem: (label, color) => dispatch(sectionsActions.addItem(label, color))
-// })
 
 export default connect(mapStatetoProps)(Wheel)
