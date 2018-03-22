@@ -5,7 +5,7 @@ const REMOVE_ITEM = 'lutti-wheel/sections/REMOVE_ITEM';
 // Default State
 const defaultState = [
   {
-    label: 'zero',
+    label: 'zero zero',
     color: 'green',
   },
   {
@@ -22,7 +22,7 @@ const defaultState = [
   },
   {
     label: 'four',
-    color: 'pink'
+    color: 'pink',
   },
 ];
 

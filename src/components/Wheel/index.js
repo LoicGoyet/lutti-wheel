@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Sound from 'react-sound';
 
@@ -6,6 +7,17 @@ import WheelSection from '../WheelSection';
 import RollingSound from '../../sounds/rolling.mp3';
 
 class Wheel extends React.Component {
+  static propTypes = {
+    sections: PropTypes.array.isRequired,
+    turnsByShuffle: PropTypes.number,
+    size: PropTypes.number,
+  };
+
+  static defaultProps = {
+    turnsByShuffle: 10,
+    size: 600, // in pixels
+  };
+
   constructor(props) {
     super(props);
 
@@ -65,7 +77,7 @@ class Wheel extends React.Component {
         <Circle turn={this.state.rotation * -1} size={this.props.size}>
           {this.props.sections.map((section, index) => (
             <WheelSection
-              key={index}
+              key={section.label}
               index={index}
               section={section}
               length={this.props.sections.length}
@@ -78,11 +90,6 @@ class Wheel extends React.Component {
     );
   }
 }
-
-Wheel.defaultProps = {
-  turnsByShuffle: 10,
-  size: 600, // in pixels
-};
 
 export default Wheel;
 

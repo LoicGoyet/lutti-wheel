@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const WheelSection = props => {
@@ -21,6 +22,18 @@ const WheelSection = props => {
       <Label wheelSize={props.wheelSize}>{props.section.label}</Label>
     </Wrapper>
   );
+};
+
+WheelSection.propTypes = {
+  wheelSize: PropTypes.number.isRequired,
+  length: PropTypes.number.isRequired,
+  index: PropTypes.number.isRequired,
+  section: PropTypes.object.isRequired,
+  disabled: PropTypes.bool,
+};
+
+WheelSection.defaultProps = {
+  disabled: false,
 };
 
 export default WheelSection;

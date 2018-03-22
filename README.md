@@ -1,4 +1,3 @@
-* formater
 * add section
 * two sections wheel
 * edit section
