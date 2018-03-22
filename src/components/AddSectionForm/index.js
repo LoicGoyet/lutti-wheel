@@ -13,7 +13,7 @@ export default class AddSectionForm extends React.Component {
 
   onSubmit(event) {
     event.preventDefault();
-    this.props.addItem(this.title.value, this.color.value);
+    this.props.addItem(this.label.value, this.color.value);
     return this.form.reset();
   }
 
@@ -27,9 +27,9 @@ export default class AddSectionForm extends React.Component {
       >
         <input
           type="text"
-          placeholder="title"
+          placeholder="label"
           ref={input => {
-            this.title = input;
+            this.label = input;
           }}
           required
         />

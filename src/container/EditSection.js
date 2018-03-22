@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import * as sectionsActions from '../ducks/sections';
-import SectionForm from '../components/SectionForm';
+import EditSectionForm from '../components/EditSectionForm';
 
 const mapStatetoProps = (state, ownProps) => ({
   section: state.sections[ownProps.index],
@@ -9,6 +9,7 @@ const mapStatetoProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   removeItem: () => dispatch(sectionsActions.removeItem(ownProps.index)),
+  editItem: item => dispatch(sectionsActions.editItem(ownProps.index, item)),
 });
 
-export default connect(mapStatetoProps, mapDispatchToProps)(SectionForm);
+export default connect(mapStatetoProps, mapDispatchToProps)(EditSectionForm);

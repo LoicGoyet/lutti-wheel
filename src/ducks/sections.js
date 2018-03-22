@@ -1,28 +1,29 @@
 // Actions
 const ADD_ITEM = 'lutti-wheel/sections/ADD_ITEM';
+const EDIT_ITEM = 'lutti-wheel/sections/EDIT_ITEM';
 const REMOVE_ITEM = 'lutti-wheel/sections/REMOVE_ITEM';
 
 // Default State
 const defaultState = [
   {
     label: 'zero zero',
-    color: 'green',
+    color: '#008000',
   },
   {
     label: 'one',
-    color: 'orange',
+    color: '#ffa500',
   },
   {
     label: 'two',
-    color: 'yellow',
+    color: '#ffff00',
   },
   {
     label: 'three',
-    color: 'blue',
+    color: '#0000ff',
   },
   {
     label: 'four',
-    color: 'pink',
+    color: '#ffc0cb',
   },
 ];
 
@@ -37,6 +38,10 @@ export default function reducer(state = defaultState, action) {
           color: action.color,
         },
       ];
+
+    case EDIT_ITEM:
+      return [...state.slice(0, action.index), action.item, ...state.slice(action.index + 1)];
+
     case REMOVE_ITEM:
       return [
         // from the start to the one we want to delete
@@ -55,6 +60,14 @@ export function addItem(label, color) {
     type: ADD_ITEM,
     label,
     color,
+  };
+}
+
+export function editItem(index, item) {
+  return {
+    type: EDIT_ITEM,
+    index,
+    item,
   };
 }
 
