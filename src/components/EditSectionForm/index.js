@@ -10,10 +10,11 @@ class EditSectionForm extends React.Component {
 
   constructor(props) {
     super(props);
-    this.updateItem = this.updateItem.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  updateItem() {
+  onSubmit(event) {
+    event.preventDefault();
     return this.props.editItem({
       ...this.section,
       label: this.label.value,
@@ -23,23 +24,25 @@ class EditSectionForm extends React.Component {
 
   render() {
     return (
-      <form>
+      <form onSubmit={this.onSubmit}>
         <input
           type="text"
           ref={input => {
             this.label = input;
           }}
           defaultValue={this.props.section.label}
-          onChange={this.updateItem}
         />
+
         <input
           type="color"
           ref={input => {
             this.color = input;
           }}
           defaultValue={this.props.section.color}
-          onChange={this.updateItem}
         />
+
+        <button type="submit">update</button>
+
         <button onClick={() => this.props.removeItem()}>remove</button>
       </form>
     );
