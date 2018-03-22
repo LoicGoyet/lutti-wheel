@@ -1,12 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
+import Sound from 'react-sound';
 
 import WheelSection from '../WheelSection'
+import RollingSound from '../../sounds/rolling.mp3'
 
 class Wheel extends React.Component {
     constructor(props) {
         super(props)
-        
+
         this.shuffleSection = this.shuffleSection.bind(this)
         this.reset = this.reset.bind(this)
 
@@ -14,6 +16,7 @@ class Wheel extends React.Component {
             selectedIndex: 0,
             selectedIndexes: [],
             rotation: 0,
+            playSound: Sound.status.STOPPED,
         }
     }
 
@@ -26,12 +29,19 @@ class Wheel extends React.Component {
 
         const newRotation = this.state.rotation + this.props.turnsByShuffle * 360;
         const rotation = newRotation + (selectedIndex - previousSelectedIndex) * (360 / this.props.sections.length);
-        
+
         this.setState({
           selectedIndex,
           rotation,
-          selectedIndexes: [...this.state.selectedIndexes, selectedIndex]
+          selectedIndexes: [...this.state.selectedIndexes, selectedIndex],
+          playSound: Sound.status.PLAYING,
+        }, () => {
+          setTimeout(() => {
+            console.log('hello world !');
+            this.setState({playSound: Sound.status.STOPPED})
+          }, 10000)
         });
+
     }
 
     reset() {
@@ -44,6 +54,8 @@ class Wheel extends React.Component {
         return <Wrapper size={this.props.size}>
             {this.state.selectedIndexes.length > 0 && <Reset onClick={this.reset}>reset</Reset>}
             {this.state.selectedIndexes.length < this.props.sections.length && <Trigger onClick={this.shuffleSection} />}
+
+            <Sound url={RollingSound} playStatus={this.state.playSound}/>
 
             <Circle turn={this.state.rotation * -1} size={this.props.size}>
               {this.props.sections.map((section, index) => (
@@ -103,5 +115,5 @@ const Circle = styled.div`
   border-radius: ${props => props.size}px;
   overflow: hidden;
   transform: rotate(${props => props.turn}deg);
-  transition: transform 10s cubic-bezier(0.39, 0.25, 0, 1.05);
+  transition: transform 7s cubic-bezier(0.39, 0.25, 0, 1.05);
 `;
