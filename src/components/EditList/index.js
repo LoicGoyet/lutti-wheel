@@ -6,7 +6,7 @@ import EditSection from '../../container/EditSection';
 const EditList = props => (
   <section>
     {props.sections.length > 0 &&
-      props.sections.map((section, index) => <EditSection key={`${section.label}`} index={index} />)}
+      props.sections.map((section, index) => <EditSection key={`${index}-${section.label}`} index={index} />)}
   </section>
 );
 

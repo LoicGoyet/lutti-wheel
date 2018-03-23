@@ -78,7 +78,7 @@ class Wheel extends React.Component {
         <Circle turn={this.props.rotation} size={this.props.size}>
           {this.props.sections.map((section, index) => (
             <WheelSection
-              key={section.label}
+              key={`${index} ${section.label}`}
               index={index}
               section={section}
               length={this.props.sections.length}

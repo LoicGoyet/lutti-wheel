@@ -4,6 +4,11 @@ import PropTypes from 'prop-types';
 export default class AddSectionForm extends React.Component {
   static propTypes = {
     addItem: PropTypes.func.isRequired,
+    defaultColor: PropTypes.string,
+  };
+
+  static defaultProps = {
+    defaultColor: 'rgb(12, 57, 83)',
   };
 
   constructor(props) {
@@ -35,6 +40,7 @@ export default class AddSectionForm extends React.Component {
         />
         <input
           type="color"
+          defaultValue={this.props.defaultColor}
           ref={input => {
             this.color = input;
           }}

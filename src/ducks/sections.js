@@ -14,23 +14,23 @@ const defaultState = {
   data: [
     {
       label: '0',
-      color: '#008000',
+      color: '#0c3953',
     },
     {
       label: '1',
-      color: '#ffa500',
+      color: '#0E147A',
     },
     // {
     //   label: '2',
-    //   color: '#ffff00',
+    //   color: '#117BA1',
     // },
     // {
     //   label: '3',
-    //   color: '#0000ff',
+    //   color: '#189CC5',
     // },
     // {
     //   label: '4',
-    //   color: '#ffc0cb',
+    //   color: '#5CB09B',
     // },
   ],
 };
