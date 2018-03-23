@@ -40,6 +40,8 @@ WheelSection.defaultProps = {
 
 export default WheelSection;
 
+const getColorByBgColor = bgColor => (parseInt(bgColor.replace('#', ''), 16) > 0xffffff / 2 ? '#000' : '#fff');
+
 const Wrapper = styled.div`
   width: 0;
   height: 0;
@@ -54,6 +56,7 @@ const Wrapper = styled.div`
   transform: rotate(${props => props.index * props.vertexAngle}deg);
   opacity: ${props => (props.disabled ? 0.15 : 1)};
   transition: opacity 200ms ease-in-out;
+  color: ${props => getColorByBgColor(props.bgColor)};
 `;
 
 const HalfWrapper = Wrapper.extend`
