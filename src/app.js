@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Panel from './components/Panel';
 import WheelContainer from './container/WheelContainer';
 import ListSections from './container/ListSections';
 import AddSection from './container/AddSection';
@@ -9,9 +10,14 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <ListSections />
-        <AddSection />
-        <ResetSections />
+        <Panel>
+          <React.Fragment>
+            <ListSections />
+            <AddSection />
+            <ResetSections />
+          </React.Fragment>
+        </Panel>
+
         <WheelContainer />
       </div>
     );

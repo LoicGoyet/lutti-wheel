@@ -18,13 +18,10 @@ const defaultColors = [
   '#CA2B1A',
 ];
 
-const mapStatetoProps = (state, ownProps) => {
-  console.log(state.sections.data.length, state.sections.data.length % defaultColors.length);
-  return {
-    section: state.sections.data[ownProps.index],
-    defaultColor: defaultColors[state.sections.data.length % defaultColors.length],
-  };
-};
+const mapStatetoProps = (state, ownProps) => ({
+  section: state.sections.data[ownProps.index],
+  defaultColor: defaultColors[state.sections.data.length % defaultColors.length],
+});
 
 const mapDispatchToProps = dispatch => ({
   addItem: (label, color) => dispatch(sectionsActions.addItem(label, color)),
