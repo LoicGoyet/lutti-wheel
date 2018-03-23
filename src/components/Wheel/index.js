@@ -5,6 +5,7 @@ import Sound from 'react-sound';
 
 import WheelSection from '../WheelSection';
 import RollingSound from '../../sounds/rolling.mp3';
+import SpinButton from '../SpinButton';
 
 class Wheel extends React.Component {
   static propTypes = {
@@ -61,6 +62,8 @@ class Wheel extends React.Component {
 
     this.props.updateSelectedIndex(selectedIndex);
     this.props.updateRotation(rotation);
+
+    return setTimeout(() => this.button.blur(), 7000);
   }
 
   reset() {
@@ -71,7 +74,11 @@ class Wheel extends React.Component {
     return (
       <Wrapper size={this.props.size}>
         {this.props.selectedIndexes.length > 0 && <Reset onClick={this.reset}>reset</Reset>}
-        {this.props.selectedIndexes.length < this.props.sections.length && <Trigger onClick={this.shuffleSection} />}
+        {this.props.selectedIndexes.length < this.props.sections.length && (
+          <SpinButton onClick={this.shuffleSection} reference={button => {
+            this.button = button
+          }} />
+        )}
 
         <Sound url={RollingSound} playStatus={this.state.playSound} />
 
@@ -99,18 +106,6 @@ const Wrapper = styled.div`
   height: ${props => props.size}px;
   width: ${props => props.size}px;
   margin: auto;
-`;
-
-const Trigger = styled.button`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 60px;
-  height: 60px;
-  border-radius: 60px;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-  z-index: 2;
 `;
 
 const Reset = styled.button`

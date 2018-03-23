@@ -1,5 +1,6 @@
 import React from 'react';
 
+import './style/base';
 import Panel from './components/Panel';
 import WheelContainer from './container/WheelContainer';
 import ListSections from './container/ListSections';
