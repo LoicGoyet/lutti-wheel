@@ -5,6 +5,7 @@ const REMOVE_ITEM = 'lutti-wheel/sections/REMOVE_ITEM';
 const UPDATE_SELECTED_INDEX = 'lutti-wheel/sections/UPDATE_SELECTED_INDEX';
 const RESET_SELECTED_INDEXES = 'lutti-wheel/sections/RESET_SELECTED_INDEXES';
 const UPDATE_ROTATION = 'lutti-wheel/sections/UPDATE_ROTATION';
+const RESET = 'lutti-wheel/sections/RESET';
 
 // Default State
 const defaultState = {
@@ -94,6 +95,11 @@ export default function reducer(state = defaultState, action) {
         rotation: action.rotation,
       };
 
+    case RESET:
+      return {
+        ...defaultState,
+      };
+
     default:
       return state;
   }
@@ -140,5 +146,11 @@ export function updateRotation(rotation) {
   return {
     type: UPDATE_ROTATION,
     rotation,
+  };
+}
+
+export function reset() {
+  return {
+    type: RESET,
   };
 }
