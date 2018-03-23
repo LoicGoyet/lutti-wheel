@@ -30,13 +30,24 @@ class Wheel extends React.Component {
 
     this.shuffleSection = this.shuffleSection.bind(this);
     this.reset = this.reset.bind(this);
+    this.playSound = this.playSound.bind(this);
 
     this.state = {
       playSound: Sound.status.STOPPED,
     };
   }
 
+  playSound() {
+    this.setState({ playSound: Sound.status.STOPPED }, () => {
+      this.setState({
+        playSound: Sound.status.PLAYING,
+      });
+    });
+  }
+
   shuffleSection() {
+    this.playSound();
+
     const previousSelectedIndex = this.props.selectedIndex;
     const possibleSections = this.props.sections.filter(
       (section, index) => !this.props.selectedIndexes.includes(index)
@@ -50,17 +61,6 @@ class Wheel extends React.Component {
 
     this.props.updateSelectedIndex(selectedIndex);
     this.props.updateRotation(rotation);
-
-    this.setState(
-      {
-        playSound: Sound.status.PLAYING,
-      },
-      () => {
-        setTimeout(() => {
-          this.setState({ playSound: Sound.status.STOPPED });
-        }, 10000);
-      }
-    );
   }
 
   reset() {
