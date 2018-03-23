@@ -22,7 +22,7 @@ class Wheel extends React.Component {
   static defaultProps = {
     turnsByShuffle: 10,
     size: 600, // in pixels
-    rotation: 0,
+    rotation: 90,
   };
 
   constructor(props) {
@@ -46,7 +46,7 @@ class Wheel extends React.Component {
     const selectedIndex = this.props.sections.indexOf(selectedSection);
 
     const newRotation = this.props.rotation + this.props.turnsByShuffle * 360;
-    const rotation = newRotation + (selectedIndex - previousSelectedIndex) * (360 / this.props.sections.length);
+    const rotation = newRotation + (previousSelectedIndex - selectedIndex) * (360 / this.props.sections.length);
 
     this.props.updateSelectedIndex(selectedIndex);
     this.props.updateRotation(rotation);
@@ -57,7 +57,6 @@ class Wheel extends React.Component {
       },
       () => {
         setTimeout(() => {
-          console.log('hello world !');
           this.setState({ playSound: Sound.status.STOPPED });
         }, 10000);
       }
@@ -76,7 +75,7 @@ class Wheel extends React.Component {
 
         <Sound url={RollingSound} playStatus={this.state.playSound} />
 
-        <Circle turn={this.props.rotation * -1} size={this.props.size}>
+        <Circle turn={this.props.rotation} size={this.props.size}>
           {this.props.sections.map((section, index) => (
             <WheelSection
               key={section.label}
@@ -127,5 +126,5 @@ const Circle = styled.div`
   border-radius: ${props => props.size}px;
   overflow: hidden;
   transform: rotate(${props => props.turn}deg);
-  transition: transform ${props => (props.turn === 0 ? '0s' : '7s')} cubic-bezier(0.39, 0.25, 0, 1.05);
+  transition: transform ${props => (props.turn === 90 ? '0s' : '7s')} cubic-bezier(0.39, 0.25, 0, 1.05);
 `;

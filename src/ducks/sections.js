@@ -10,26 +10,26 @@ const UPDATE_ROTATION = 'lutti-wheel/sections/UPDATE_ROTATION';
 const defaultState = {
   selectedIndex: 0,
   selectedIndexes: [],
-  rotation: 0,
+  rotation: 90,
   data: [
     {
-      label: 'zero zero',
+      label: '0',
       color: '#008000',
     },
     {
-      label: 'one',
+      label: '1',
       color: '#ffa500',
     },
     {
-      label: 'two',
+      label: '2',
       color: '#ffff00',
     },
     {
-      label: 'three',
+      label: '3',
       color: '#0000ff',
     },
     {
-      label: 'four',
+      label: '4',
       color: '#ffc0cb',
     },
   ],

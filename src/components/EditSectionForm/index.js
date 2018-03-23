@@ -30,6 +30,7 @@ class EditSectionForm extends React.Component {
           ref={input => {
             this.label = input;
           }}
+          onBlur={this.onSubmit}
           defaultValue={this.props.section.label}
         />
 
@@ -38,12 +39,15 @@ class EditSectionForm extends React.Component {
           ref={input => {
             this.color = input;
           }}
+          onChange={this.onSubmit}
           defaultValue={this.props.section.color}
         />
 
-        <button type="submit">update</button>
+        {/* <button type="submit">update</button> */}
 
-        <button onClick={() => this.props.removeItem()}>remove</button>
+        <button type="button" onClick={() => this.props.removeItem()}>
+          remove
+        </button>
       </form>
     );
   }
