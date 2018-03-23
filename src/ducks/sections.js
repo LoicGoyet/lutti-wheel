@@ -20,18 +20,18 @@ const defaultState = {
       label: '1',
       color: '#ffa500',
     },
-    {
-      label: '2',
-      color: '#ffff00',
-    },
-    {
-      label: '3',
-      color: '#0000ff',
-    },
-    {
-      label: '4',
-      color: '#ffc0cb',
-    },
+    // {
+    //   label: '2',
+    //   color: '#ffff00',
+    // },
+    // {
+    //   label: '3',
+    //   color: '#0000ff',
+    // },
+    // {
+    //   label: '4',
+    //   color: '#ffc0cb',
+    // },
   ],
 };
 

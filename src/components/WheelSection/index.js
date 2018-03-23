@@ -9,8 +9,10 @@ const WheelSection = props => {
   const vertexAngle = 360 / props.length; // as degree
   const halfBase = height / getTanFromDegrees(180 - vertexAngle / 2 - 90);
 
+  const Element = props.length > 2 ? Wrapper : HalfWrapper;
+
   return (
-    <Wrapper
+    <Element
       bgColor={props.section.color}
       height={height}
       halfBase={halfBase}
@@ -20,7 +22,7 @@ const WheelSection = props => {
       wheelSize={props.wheelSize}
     >
       <Label wheelSize={props.wheelSize}>{props.section.label}</Label>
-    </Wrapper>
+    </Element>
   );
 };
 
@@ -52,6 +54,18 @@ const Wrapper = styled.div`
   transform: rotate(${props => props.index * props.vertexAngle}deg);
   opacity: ${props => (props.disabled ? 0.15 : 1)};
   transition: opacity 200ms ease-in-out;
+`;
+
+const HalfWrapper = Wrapper.extend`
+  border-width: 0;
+  width: 0;
+  height: ${props => props.height}px;
+  width: ${props => props.height * 2}px;
+  background-color: ${props => props.bgColor};
+
+  span {
+    top: 50% !important;
+  }
 `;
 
 const Label = styled.span`

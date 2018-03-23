@@ -5,6 +5,7 @@ import EditSectionForm from '../components/EditSectionForm';
 
 const mapStatetoProps = (state, ownProps) => ({
   section: state.sections.data[ownProps.index],
+  sectionsLength: state.sections.data.length,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

@@ -6,6 +6,11 @@ class EditSectionForm extends React.Component {
     section: PropTypes.object.isRequired,
     removeItem: PropTypes.func.isRequired,
     editItem: PropTypes.func.isRequired,
+    sectionsLength: PropTypes.number,
+  };
+
+  static defaultProps = {
+    sectionsLength: 0,
   };
 
   constructor(props) {
@@ -43,11 +48,11 @@ class EditSectionForm extends React.Component {
           defaultValue={this.props.section.color}
         />
 
-        {/* <button type="submit">update</button> */}
-
-        <button type="button" onClick={() => this.props.removeItem()}>
-          remove
-        </button>
+        {this.props.sectionsLength > 2 && (
+          <button type="button" onClick={() => this.props.removeItem()}>
+            remove
+          </button>
+        )}
       </form>
     );
   }
