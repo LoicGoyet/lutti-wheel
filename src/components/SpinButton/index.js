@@ -36,13 +36,15 @@ const Button = styled.button`
   transition: box-shadow 200ms ease-in-out;
   font-family: inherit;
   background-color: #fff;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.2);
 
   &:hover {
-    box-shadow: inset 0px 2px 7px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 14px rgba(0, 0, 0, 0.2), inset 0 0 14px rgba(0, 0, 0, 0.2);
   }
 
   &:focus {
     outline: 0;
-    box-shadow: inset 0px 3px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 14px rgba(0, 0, 0, 0.2), inset 0 0 14px rgba(0, 0, 0, 0.5);
   }
 `;

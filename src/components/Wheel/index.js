@@ -121,6 +121,22 @@ const Wrapper = styled.div`
   height: ${props => props.size}px;
   width: ${props => props.size}px;
   margin: auto;
+  ${props => WrapperBorder(props)};
+`;
+
+const WrapperBorder = props => `
+  &::after {
+    content: '';
+    height: ${props.size}px;
+    width: ${props.size}px;
+    border: 15px solid #fff;
+    border-radius: ${props.size}px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 40px 5px rgba(0, 0, 0, 0.3), inset 0 0 12px rgba(0, 0, 0, 0.5);
+  }
 `;
 
 const Circle = styled.div`
@@ -151,7 +167,7 @@ const SpinButtonPlaceholder = styled.div`
 const PicoImage = styled.img`
   position: absolute;
   top: 50%;
-  right: -55px;
+  right: -40px;
   transform: translateY(-50%);
   z-index: 3;
   width: 94px;
