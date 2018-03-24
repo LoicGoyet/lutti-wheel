@@ -1,5 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import FaTrash from 'react-icons/lib/fa/trash';
+
+import SectionInput from '../SectionInput';
 
 class EditSectionForm extends React.Component {
   static propTypes = {
@@ -20,6 +24,8 @@ class EditSectionForm extends React.Component {
 
   onSubmit(event) {
     event.preventDefault();
+    console.log(this.color);
+
     return this.props.editItem({
       ...this.section,
       label: this.label.value,
@@ -29,33 +35,53 @@ class EditSectionForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          type="text"
-          ref={input => {
-            this.label = input;
+      <Wrapper onSubmit={this.onSubmit}>
+        <SectionInput
+          onSubmit={this.onSubmit}
+          text={{
+            ref: input => (this.label = input),
+            defaultValue: this.props.section.label,
           }}
-          onBlur={this.onSubmit}
-          defaultValue={this.props.section.label}
-        />
-
-        <input
-          type="color"
-          ref={input => {
-            this.color = input;
+          color={{
+            ref: input => (this.color = input),
+            defaultValue: this.props.section.color,
           }}
-          onChange={this.onSubmit}
-          defaultValue={this.props.section.color}
         />
 
         {this.props.sectionsLength > 2 && (
-          <button type="button" onClick={() => this.props.removeItem()}>
-            remove
-          </button>
+          <TrashButton type="button" onClick={() => this.props.removeItem()}>
+            <FaTrash />
+          </TrashButton>
         )}
-      </form>
+      </Wrapper>
     );
   }
 }
 
 export default EditSectionForm;
+
+const Wrapper = styled.form`
+  display: flex;
+`;
+
+const TrashButton = styled.button`
+  margin-left: 10px;
+  height: 40px;
+  width: 40px;
+  padding: 0;
+  background-color: transparent;
+  cursor: pointer;
+  border: 0;
+  font-size: 1.2em;
+  color: rgb(43, 31, 67);
+  border-radius: 40px;
+
+  &:hover {
+    background-color: rgb(43, 31, 67);
+    color: #fff;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+`;

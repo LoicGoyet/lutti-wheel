@@ -14,7 +14,7 @@ class Panel extends React.Component {
   }
 
   state = {
-    isOpen: false,
+    isOpen: true,
   };
 
   toggleOpen() {
@@ -40,11 +40,12 @@ const Wrapper = styled.section`
   top: 0;
   left: 0;
   bottom: 0;
-  width: 200px;
+  width: 400px;
   background-color: #fff;
-  transition: transform 300ms ease-in-out;
-  transform: ${props => (props.isOpen ? 'translateX(0)' : 'translateX(-200px)')};
-  z-index: 100;
+  transition: all 300ms ease-in-out;
+  transform: ${props => (props.isOpen ? 'translateX(0)' : 'translateX(-400px)')};
+  z-index: 10000;
+  box-shadow: ${props => (props.isOpen ? '0 0 40px 5px rgba(0, 0, 0, 0.3)' : 'none')};
 `;
 
 const Trigger = styled.button`

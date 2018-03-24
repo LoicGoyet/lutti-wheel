@@ -4,7 +4,7 @@ import * as sectionsActions from '../ducks/sections';
 import Button from '../components/Button';
 
 const mapStatetoProps = () => ({
-  children: 'reset',
+  children: 'remove all sections',
 });
 
 const mapDispatchToProps = dispatch => ({

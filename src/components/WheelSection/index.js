@@ -84,5 +84,5 @@ const Label = styled.span`
   left: 50%;
   transform: translate(-50%, -50%) rotate(-90deg);
   font-weight: 700;
-  background-color: ${props => getBgColor(props)};
+  // background-color: ${props => getBgColor(props)};
 `;
