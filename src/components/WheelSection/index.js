@@ -20,6 +20,7 @@ const WheelSection = props => {
       vertexAngle={vertexAngle}
       disabled={props.disabled}
       wheelSize={props.wheelSize}
+      downlight={props.downlight}
     >
       <Label wheelSize={props.wheelSize}>{props.section.label}</Label>
     </Element>
@@ -32,15 +33,17 @@ WheelSection.propTypes = {
   index: PropTypes.number.isRequired,
   section: PropTypes.object.isRequired,
   disabled: PropTypes.bool,
+  downlight: PropTypes.bool,
 };
 
 WheelSection.defaultProps = {
   disabled: false,
+  downlight: false,
 };
 
 export default WheelSection;
 
-const getBgColor = props => (props.disabled ? '#b5b5b5' : props.bgColor);
+const getBgColor = props => (props.disabled ? '#a6a6a6' : props.bgColor);
 
 const Wrapper = styled.div`
   width: 0;
@@ -54,8 +57,8 @@ const Wrapper = styled.div`
   margin-left: ${props => -(props.halfBase * 2 - props.wheelSize) / 2}px;
   transform-origin: 50% 100%;
   transform: translate3d(0, 0, 0) rotate(${props => props.index * props.vertexAngle}deg);
-  // opacity: ${props => (props.disabled ? 0.15 : 1)};
-  transition: opacity 200ms ease-in-out;
+  opacity: ${props => (props.downlight ? 0.4 : 1)};
+  transition: opacity 400ms ease-in-out;
   color: #fff;
 `;
 

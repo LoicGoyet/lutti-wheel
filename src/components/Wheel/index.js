@@ -37,7 +37,14 @@ class Wheel extends React.Component {
 
     this.state = {
       playSound: Sound.status.STOPPED,
+      highlightSelected: false,
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.selectedIndexes.length === 0) {
+      this.setState({ highlightSelected: false });
+    }
   }
 
   playSound() {
@@ -50,6 +57,7 @@ class Wheel extends React.Component {
 
   shuffleSection() {
     this.playSound();
+    this.setState({ highlightSelected: false });
 
     const previousSelectedIndex = this.props.selectedIndex;
     const possibleSections = this.props.sections.filter(
@@ -65,7 +73,10 @@ class Wheel extends React.Component {
     this.props.updateSelectedIndex(selectedIndex);
     this.props.updateRotation(rotation);
 
-    return setTimeout(() => this.button.blur(), 7000);
+    return setTimeout(() => {
+      this.button.blur();
+      this.setState({ highlightSelected: true });
+    }, 7000);
   }
 
   reset() {
@@ -95,6 +106,7 @@ class Wheel extends React.Component {
               section={section}
               length={this.props.sections.length}
               wheelSize={this.props.size}
+              downlight={this.state.highlightSelected && this.props.selectedIndex !== index}
               disabled={this.props.selectedIndexes.includes(index) && this.props.selectedIndex !== index}
             />
           ))}
@@ -127,4 +139,5 @@ const Circle = styled.div`
   overflow: hidden;
   transform: rotate(${props => props.turn}deg);
   transition: transform ${props => (props.turn === 90 ? '0s' : '7s')} cubic-bezier(0, 0, 0.14, 1.04);
+  background-color: #000;
 `;
