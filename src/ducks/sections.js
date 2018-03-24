@@ -21,6 +21,18 @@ const defaultState = {
       label: 'section 2',
       color: '#0E147A',
     },
+    {
+      label: 'section 3',
+      color: '#117ba1',
+    },
+    {
+      label: 'section 4',
+      color: '#189cc5',
+    },
+    {
+      label: 'section 5',
+      color: '#5cb09b',
+    },
   ],
 };
 

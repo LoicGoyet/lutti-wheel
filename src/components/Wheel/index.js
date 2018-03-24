@@ -126,5 +126,5 @@ const Circle = styled.div`
   border-radius: ${props => props.size}px;
   overflow: hidden;
   transform: rotate(${props => props.turn}deg);
-  transition: transform ${props => (props.turn === 90 ? '0s' : '7s')} cubic-bezier(0.39, 0.25, 0, 1.05);
+  transition: transform ${props => (props.turn === 90 ? '0s' : '7s')} cubic-bezier(0, 0, 0.14, 1.04);
 `;

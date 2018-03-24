@@ -40,23 +40,23 @@ WheelSection.defaultProps = {
 
 export default WheelSection;
 
-const getColorByBgColor = bgColor => (parseInt(bgColor.replace('#', ''), 16) > 0xffffff / 2 ? '#000' : '#fff');
+const getBgColor = props => (props.disabled ? '#b5b5b5' : props.bgColor);
 
 const Wrapper = styled.div`
   width: 0;
   height: 0;
   border-width: ${props => props.height}px ${props => props.halfBase}px 0;
-  border-color: ${props => props.bgColor} transparent;
+  border-color: ${props => getBgColor(props)} transparent;
   border-style: solid;
   position: absolute;
   top: 0;
   left: 0;
   margin-left: ${props => -(props.halfBase * 2 - props.wheelSize) / 2}px;
   transform-origin: 50% 100%;
-  transform: rotate(${props => props.index * props.vertexAngle}deg);
-  opacity: ${props => (props.disabled ? 0.15 : 1)};
+  transform: translate3d(0, 0, 0) rotate(${props => props.index * props.vertexAngle}deg);
+  // opacity: ${props => (props.disabled ? 0.15 : 1)};
   transition: opacity 200ms ease-in-out;
-  color: ${props => getColorByBgColor(props.bgColor)};
+  color: #fff;
 `;
 
 const HalfWrapper = Wrapper.extend`
@@ -73,7 +73,7 @@ const HalfWrapper = Wrapper.extend`
 
 const Label = styled.span`
   position: absolute;
-  top: -${props => props.wheelSize / 4};
+  top: -${props => props.wheelSize / 4}px;
   width: ${props => props.wheelSize / 2}px;
   text-align: center;
   left: 50%;
