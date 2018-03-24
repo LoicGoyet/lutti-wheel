@@ -34,6 +34,8 @@ const Button = styled.button`
   font-size: 1.2rem;
   font-weight: bold;
   transition: box-shadow 200ms ease-in-out;
+  font-family: inherit;
+  background-color: #fff;
 
   &:hover {
     box-shadow: inset 0px 2px 7px rgba(0, 0, 0, 0.3);

@@ -96,6 +96,8 @@ class Wheel extends React.Component {
           />
         )}
 
+        {this.props.selectedIndexes.length >= this.props.sections.length && <SpinButtonPlaceholder />}
+
         <Sound volume={this.props.soundOn ? 100 : 0} url={RollingSound} playStatus={this.state.playSound} />
 
         <Circle turn={this.props.rotation} size={this.props.size}>
@@ -140,4 +142,18 @@ const Circle = styled.div`
   transform: rotate(${props => props.turn}deg);
   transition: transform ${props => (props.turn === 90 ? '0s' : '7s')} cubic-bezier(0, 0, 0.14, 1.04);
   background-color: #000;
+`;
+
+const SpinButtonPlaceholder = styled.div`
+  width: 80px;
+  height: 80px;
+  border-radius: 80px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  background-color: white;
+  color: rgb(200, 200, 200);
+  border: 3px solid;
 `;

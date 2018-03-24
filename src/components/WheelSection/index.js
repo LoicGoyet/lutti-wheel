@@ -22,7 +22,9 @@ const WheelSection = props => {
       wheelSize={props.wheelSize}
       downlight={props.downlight}
     >
-      <Label wheelSize={props.wheelSize}>{props.section.label}</Label>
+      <Label bgColor={props.section.color} disabled={props.disabled} wheelSize={props.wheelSize}>
+        {props.section.label}
+      </Label>
     </Element>
   );
 };
@@ -81,4 +83,6 @@ const Label = styled.span`
   text-align: center;
   left: 50%;
   transform: translate(-50%, -50%) rotate(-90deg);
+  font-weight: 700;
+  background-color: ${props => getBgColor(props)};
 `;
