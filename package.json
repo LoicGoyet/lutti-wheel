@@ -7,6 +7,7 @@
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-icons": "^2.2.7",
     "react-redux": "^5.0.7",
     "react-sound": "^1.1.0",
     "redux": "^3.7.2",
@@ -30,6 +31,7 @@
     "prettier": "^1.11.1"
   },
   "scripts": {
-    "start": "parcel index.html"
+    "start": "parcel index.html",
+    "make-prod": "parcel build index.html --public-url ./"
   }
 }

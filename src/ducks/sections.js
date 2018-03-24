@@ -14,25 +14,13 @@ const defaultState = {
   rotation: 90,
   data: [
     {
-      label: '0',
+      label: 'section 1',
       color: '#0c3953',
     },
     {
-      label: '1',
+      label: 'section 2',
       color: '#0E147A',
     },
-    // {
-    //   label: '2',
-    //   color: '#117BA1',
-    // },
-    // {
-    //   label: '3',
-    //   color: '#189CC5',
-    // },
-    // {
-    //   label: '4',
-    //   color: '#5CB09B',
-    // },
   ],
 };
 

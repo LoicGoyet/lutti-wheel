@@ -1,3 +1,3 @@
 * change animation
 * design
-* streamer mode
+* section en bold

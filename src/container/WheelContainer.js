@@ -8,6 +8,7 @@ const mapStatetoProps = state => ({
   selectedIndex: state.sections.selectedIndex,
   selectedIndexes: state.sections.selectedIndexes,
   rotation: state.sections.rotation,
+  soundOn: state.ui.soundOn,
 });
 
 const mapDispatchToProps = dispatch => ({

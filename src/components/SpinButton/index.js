@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const SpinButton = props => (
-  <Button ref={props.reference} onClick={props.onClick}>
+  <Button innerRef={props.reference} onClick={props.onClick}>
     SPIN
   </Button>
 );
@@ -33,7 +33,7 @@ const Button = styled.button`
   border: 3px solid;
   font-size: 1.2rem;
   font-weight: bold;
-  transition: box-shadow 100ms ease-in-out;
+  transition: box-shadow 200ms ease-in-out;
 
   &:hover {
     box-shadow: inset 0px 2px 7px rgba(0, 0, 0, 0.3);

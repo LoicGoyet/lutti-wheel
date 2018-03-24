@@ -18,12 +18,14 @@ class Wheel extends React.Component {
     resetSelectedIndexes: PropTypes.func.isRequired,
     updateRotation: PropTypes.func.isRequired,
     rotation: PropTypes.number,
+    soundOn: PropTypes.bool,
   };
 
   static defaultProps = {
     turnsByShuffle: 10,
     size: 600, // in pixels
     rotation: 90,
+    soundOn: true,
   };
 
   constructor(props) {
@@ -39,7 +41,7 @@ class Wheel extends React.Component {
   }
 
   playSound() {
-    this.setState({ playSound: Sound.status.STOPPED }, () => {
+    return this.setState({ playSound: Sound.status.STOPPED }, () => {
       this.setState({
         playSound: Sound.status.PLAYING,
       });
@@ -75,12 +77,15 @@ class Wheel extends React.Component {
       <Wrapper size={this.props.size}>
         {this.props.selectedIndexes.length > 0 && <Reset onClick={this.reset}>reset</Reset>}
         {this.props.selectedIndexes.length < this.props.sections.length && (
-          <SpinButton onClick={this.shuffleSection} reference={button => {
-            this.button = button
-          }} />
+          <SpinButton
+            onClick={this.shuffleSection}
+            reference={button => {
+              this.button = button;
+            }}
+          />
         )}
 
-        <Sound url={RollingSound} playStatus={this.state.playSound} />
+        <Sound volume={this.props.soundOn ? 100 : 0} url={RollingSound} playStatus={this.state.playSound} />
 
         <Circle turn={this.props.rotation} size={this.props.size}>
           {this.props.sections.map((section, index) => (
