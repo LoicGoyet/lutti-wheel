@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import FaTrash from 'react-icons/lib/fa/trash';
 
 import SectionInput from '../SectionInput';
+import Checkbox from '../Checkbox';
 
 class EditSectionForm extends React.Component {
   static propTypes = {
@@ -24,7 +25,6 @@ class EditSectionForm extends React.Component {
 
   onSubmit(event) {
     event.preventDefault();
-    console.log(this.color);
 
     return this.props.editItem({
       ...this.section,
@@ -48,6 +48,12 @@ class EditSectionForm extends React.Component {
           }}
         />
 
+        <Spacer width="10px" />
+
+        <Checkbox onchange={() => this.props.toogleItemSelection()} checked={!this.props.disabled} />
+
+        <Spacer width="5px" />
+
         {this.props.sectionsLength > 2 && (
           <TrashButton type="button" onClick={() => this.props.removeItem()}>
             <FaTrash />
@@ -65,7 +71,6 @@ const Wrapper = styled.form`
 `;
 
 const TrashButton = styled.button`
-  margin-left: 10px;
   height: 40px;
   width: 40px;
   padding: 0;
@@ -84,4 +89,8 @@ const TrashButton = styled.button`
   &:focus {
     outline: 0;
   }
+`;
+
+const Spacer = styled.div`
+  width: ${props => (props.width ? props.width : '0')};
 `;

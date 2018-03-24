@@ -6,6 +6,7 @@ const UPDATE_SELECTED_INDEX = 'lutti-wheel/sections/UPDATE_SELECTED_INDEX';
 const RESET_SELECTED_INDEXES = 'lutti-wheel/sections/RESET_SELECTED_INDEXES';
 const UPDATE_ROTATION = 'lutti-wheel/sections/UPDATE_ROTATION';
 const RESET = 'lutti-wheel/sections/RESET';
+const TOOGLE_ITEM_SELECTION = 'lutti-wheel/sections/TOOGLE_ITEM_SELECTION';
 
 // Default State
 const defaultState = {
@@ -100,6 +101,20 @@ export default function reducer(state = defaultState, action) {
         ...defaultState,
       };
 
+    case TOOGLE_ITEM_SELECTION:
+      // if index is already in state.selectedIndexes
+      if (state.selectedIndexes.indexOf(action.index) >= 0) {
+        return {
+          ...state,
+          selectedIndexes: state.selectedIndexes.filter(index => index !== action.index),
+        };
+      }
+
+      return {
+        ...state,
+        selectedIndexes: [...state.selectedIndexes, action.index],
+      };
+
     default:
       return state;
   }
@@ -152,5 +167,12 @@ export function updateRotation(rotation) {
 export function reset() {
   return {
     type: RESET,
+  };
+}
+
+export function toogleItemSelection(index) {
+  return {
+    type: TOOGLE_ITEM_SELECTION,
+    index,
   };
 }
