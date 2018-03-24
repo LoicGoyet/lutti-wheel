@@ -6,6 +6,7 @@ import Sound from 'react-sound';
 import WheelSection from '../WheelSection';
 import RollingSound from '../../sounds/rolling.mp3';
 import SpinButton from '../SpinButton';
+import Pico from './images/pico.png';
 
 class Wheel extends React.Component {
   static propTypes = {
@@ -15,7 +16,6 @@ class Wheel extends React.Component {
     selectedIndex: PropTypes.number.isRequired,
     selectedIndexes: PropTypes.array.isRequired,
     updateSelectedIndex: PropTypes.func.isRequired,
-    resetSelectedIndexes: PropTypes.func.isRequired,
     updateRotation: PropTypes.func.isRequired,
     rotation: PropTypes.number,
     soundOn: PropTypes.bool,
@@ -32,7 +32,6 @@ class Wheel extends React.Component {
     super(props);
 
     this.shuffleSection = this.shuffleSection.bind(this);
-    this.reset = this.reset.bind(this);
     this.playSound = this.playSound.bind(this);
 
     this.state = {
@@ -79,14 +78,11 @@ class Wheel extends React.Component {
     }, 7000);
   }
 
-  reset() {
-    return this.props.resetSelectedIndexes();
-  }
-
   render() {
     return (
       <Wrapper size={this.props.size}>
-        {this.props.selectedIndexes.length > 0 && <Reset onClick={this.reset}>reset</Reset>}
+        <PicoImage src={Pico} />
+
         {this.props.selectedIndexes.length < this.props.sections.length && (
           <SpinButton
             onClick={this.shuffleSection}
@@ -127,12 +123,6 @@ const Wrapper = styled.div`
   margin: auto;
 `;
 
-const Reset = styled.button`
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-`;
-
 const Circle = styled.div`
   height: ${props => props.size}px;
   width: ${props => props.size}px;
@@ -156,4 +146,13 @@ const SpinButtonPlaceholder = styled.div`
   background-color: white;
   color: rgb(200, 200, 200);
   border: 3px solid;
+`;
+
+const PicoImage = styled.img`
+  position: absolute;
+  top: 50%;
+  right: -55px;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 94px;
 `;

@@ -13,7 +13,6 @@ const mapStatetoProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   updateSelectedIndex: index => dispatch(sectionsActions.updateSelectedIndex(index)),
-  resetSelectedIndexes: () => dispatch(sectionsActions.resetSelectedIndexes()),
   updateRotation: rotation => dispatch(sectionsActions.updateRotation(rotation)),
 });
 
