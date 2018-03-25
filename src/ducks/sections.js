@@ -7,6 +7,7 @@ const RESET_SELECTED_INDEXES = 'lutti-wheel/sections/RESET_SELECTED_INDEXES';
 const UPDATE_ROTATION = 'lutti-wheel/sections/UPDATE_ROTATION';
 const RESET = 'lutti-wheel/sections/RESET';
 const TOOGLE_ITEM_SELECTION = 'lutti-wheel/sections/TOOGLE_ITEM_SELECTION';
+const LOAD_PRESET = 'lutti-wheel/sections/LOAD_PRESET';
 
 // Default State
 const defaultState = {
@@ -115,6 +116,12 @@ export default function reducer(state = defaultState, action) {
         selectedIndexes: [...state.selectedIndexes, action.index],
       };
 
+    case LOAD_PRESET:
+      return {
+        ...state,
+        data: action.data,
+      };
+
     default:
       return state;
   }
@@ -174,5 +181,12 @@ export function toogleItemSelection(index) {
   return {
     type: TOOGLE_ITEM_SELECTION,
     index,
+  };
+}
+
+export function loadPreset(data) {
+  return {
+    type: LOAD_PRESET,
+    data,
   };
 }

@@ -5,6 +5,7 @@ import Panel from '../Panel';
 import ListSections from '../../container/ListSections';
 import AddSection from '../../container/AddSection';
 import RemoveAllSections from '../../container/RemoveAllSections';
+import Preset from '../../container/Preset';
 
 const Settings = () => (
   <Panel>
@@ -13,6 +14,7 @@ const Settings = () => (
       <Footer>
         <ButtonsRow>
           <RemoveAllSections />
+          <Preset />
         </ButtonsRow>
 
         <AddSection />
