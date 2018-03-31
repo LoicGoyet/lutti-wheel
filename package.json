@@ -27,11 +27,17 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.7.0",
+    "husky": "^0.15.0-rc.13",
     "parcel-bundler": "^1.6.2",
     "prettier": "^1.11.1"
   },
   "scripts": {
     "start": "parcel index.html",
     "make-prod": "parcel build index.html --public-url ./"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "git add dist/ && git commit -m 'build app'"
+    }
   }
 }
