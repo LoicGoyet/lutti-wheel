@@ -32,7 +32,7 @@
     "prettier": "^1.11.1"
   },
   "scripts": {
-    "start": "parcel index.html",
+    "start": "parcel index.html --out-dir serve",
     "make-prod": "parcel build index.html --public-url ./"
   },
   "husky": {
