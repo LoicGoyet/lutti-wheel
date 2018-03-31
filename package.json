@@ -37,7 +37,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "(git add dist/ && git commit -m 'build app') --no-verify"
+      "pre-push": "yarn make-prod && git add dist/ && git commit -m 'build app'"
     }
   }
 }
