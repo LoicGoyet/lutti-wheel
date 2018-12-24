@@ -7,7 +7,6 @@ const RESET_SELECTED_INDEXES = 'lutti-wheel/setups/RESET_SELECTED_INDEXES';
 const UPDATE_ROTATION = 'lutti-wheel/setups/UPDATE_ROTATION';
 const RESET = 'lutti-wheel/setups/RESET';
 const TOOGLE_ITEM_SELECTION = 'lutti-wheel/setups/TOOGLE_ITEM_SELECTION';
-const LOAD_PRESET = 'lutti-wheel/setups/LOAD_PRESET';
 const RETITLE_SETUP = 'lutti-wheel/setups/RETITLE_SETUP';
 
 // Default State
@@ -167,19 +166,6 @@ export default function reducer(state = defaultState, action) {
       };
     }
 
-    case LOAD_PRESET: {
-      return {
-        ...state,
-        byId: {
-          ...state.byId,
-          [state.activeId]: {
-            ...state.byId[state.activeId],
-            data: action.data,
-          },
-        },
-      };
-    }
-
     case RETITLE_SETUP: {
       return {
         ...state,
@@ -239,11 +225,6 @@ export const reset = () => ({
 export const toogleItemSelection = index => ({
   type: TOOGLE_ITEM_SELECTION,
   index,
-});
-
-export const loadPreset = data => ({
-  type: LOAD_PRESET,
-  data,
 });
 
 export const retitleSetup = title => ({
