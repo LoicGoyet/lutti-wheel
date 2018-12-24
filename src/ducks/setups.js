@@ -8,6 +8,8 @@ const UPDATE_ROTATION = 'lutti-wheel/setups/UPDATE_ROTATION';
 const TOOGLE_ITEM_SELECTION = 'lutti-wheel/setups/TOOGLE_ITEM_SELECTION';
 const RETITLE_SETUP = 'lutti-wheel/setups/RETITLE_SETUP';
 
+const ADD_SETUP = 'lutti-wheel/setups/ADD_SETUP';
+
 // Default State
 const defaultState = {
   byId: {
@@ -31,6 +33,24 @@ const defaultState = {
   },
   allIds: [0],
   activeId: 0,
+};
+
+const freshSetup = {
+  id: 0,
+  selectedIndex: 0,
+  selectedIndexes: [],
+  rotation: 90,
+  title: 'fresh setup setup',
+  data: [
+    {
+      label: 'section 1',
+      color: '#0c3953',
+    },
+    {
+      label: 'section 2',
+      color: '#0E147A',
+    },
+  ],
 };
 
 // Reducer
@@ -172,6 +192,25 @@ export default function reducer(state = defaultState, action) {
       };
     }
 
+    case ADD_SETUP: {
+      // get setup id
+      const id = state.allIds[state.allIds.length - 1] + 1;
+
+      return {
+        ...state,
+        byId: {
+          ...state.byId,
+          [id]: {
+            ...freshSetup,
+            title: `setup ${id}`,
+            id,
+          },
+        },
+        allIds: [...state.allIds, id],
+        activeId: id,
+      };
+    }
+
     default: {
       return state;
     }
@@ -219,4 +258,8 @@ export const toogleItemSelection = index => ({
 export const retitleSetup = title => ({
   type: RETITLE_SETUP,
   title,
+});
+
+export const addSetup = () => ({
+  type: ADD_SETUP,
 });

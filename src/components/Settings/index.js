@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Panel from '../Panel';
 import ListSections from '../../container/ListSections';
+import AddSetup from '../../container/AddSetup';
 
 const Settings = () => (
   <Panel>
@@ -10,6 +11,7 @@ const Settings = () => (
       <ListSections />
 
       <Footer>
+        <AddSetup />
       </Footer>
     </Column>
   </Panel>
