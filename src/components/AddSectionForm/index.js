@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import FaCaretRight from 'react-icons/lib/fa/caret-right';
 
-import SectionInput from '../SectionInput';
-
 export default class AddSectionForm extends React.Component {
   static propTypes = {
     addItem: PropTypes.func.isRequired,
@@ -28,34 +26,38 @@ export default class AddSectionForm extends React.Component {
 
   render() {
     return (
-      <Wrapper
-        onSubmit={this.onSubmit}
-        innerRef={form => {
-          this.form = form;
-        }}
-      >
-        <Group>
-          <TextInput
-            type="text"
-            placeholder="label"
-            innerRef={input => {
-              this.label = input;
-            }}
-            required
-          />
-          <ColorPicker
-            type="color"
-            defaultValue={this.props.defaultColor}
-            innerRef={input => {
-              this.color = input;
-            }}
-          />
-        </Group>
+      <React.Fragment>
+        <Label>New section</Label>
 
-        <SubmitButton type="submit">
-          <FaCaretRight />
-        </SubmitButton>
-      </Wrapper>
+        <Wrapper
+          onSubmit={this.onSubmit}
+          innerRef={form => {
+            this.form = form;
+          }}
+        >
+          <Group>
+            <TextInput
+              type="text"
+              placeholder="label"
+              innerRef={input => {
+                this.label = input;
+              }}
+              required
+            />
+            <ColorPicker
+              type="color"
+              defaultValue={this.props.defaultColor}
+              innerRef={input => {
+                this.color = input;
+              }}
+            />
+          </Group>
+
+          <SubmitButton type="submit">
+            <FaCaretRight />
+          </SubmitButton>
+        </Wrapper>
+      </React.Fragment>
     );
   }
 }
@@ -126,4 +128,14 @@ const ColorPicker = styled.input`
   &:focus {
     outline: 0;
   }
+`;
+
+const Label = styled.span`
+  color: rgb(43, 31, 67);
+  display: block;
+  padding: 0 15px;
+  margin: 0 0 0.3em;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  font-weight: bold;
 `;

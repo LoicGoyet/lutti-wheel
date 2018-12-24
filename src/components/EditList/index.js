@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import EditSection from '../../container/EditSection';
+import AddSection from '../../container/AddSection';
 
 const EditList = props => (
   <Wrapper>
     {props.sections.length > 0 &&
       props.sections.map((section, index) => <EditSection key={`${index}-${section.label}`} index={index} />)}
+
+    <AddSection />
   </Wrapper>
 );
 
