@@ -14,7 +14,7 @@ class Panel extends React.Component {
   }
 
   state = {
-    isOpen: false,
+    isOpen: true,
   };
 
   toggleOpen() {

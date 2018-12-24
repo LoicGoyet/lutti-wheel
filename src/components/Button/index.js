@@ -2,7 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const Button = props => <Wrapper onClick={props.onClick}>{props.children}</Wrapper>;
+const Button = props => (
+  <Wrapper onClick={props.onClick} {...props}>
+    {props.children}
+  </Wrapper>
+);
 
 Button.propTypes = {
   onClick: PropTypes.func,
@@ -24,6 +28,7 @@ const Wrapper = styled.button`
   border: 0;
   cursor: pointer;
   text-decoration: underline;
+  border-radius: 3px;
 
   &:hover {
     text-decoration: none;

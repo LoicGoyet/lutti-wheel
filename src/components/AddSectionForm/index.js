@@ -27,8 +27,6 @@ export default class AddSectionForm extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Label>New section</Label>
-
         <Wrapper
           onSubmit={this.onSubmit}
           innerRef={form => {
@@ -38,7 +36,7 @@ export default class AddSectionForm extends React.Component {
           <Group>
             <TextInput
               type="text"
-              placeholder="label"
+              placeholder="new section"
               innerRef={input => {
                 this.label = input;
               }}
@@ -128,14 +126,4 @@ const ColorPicker = styled.input`
   &:focus {
     outline: 0;
   }
-`;
-
-const Label = styled.span`
-  color: rgb(43, 31, 67);
-  display: block;
-  padding: 0 15px;
-  margin: 0 0 0.3em;
-  font-size: 0.8em;
-  text-transform: uppercase;
-  font-weight: bold;
 `;

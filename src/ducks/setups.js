@@ -1,13 +1,14 @@
 // Actions
-const ADD_ITEM = 'lutti-wheel/sections/ADD_ITEM';
-const EDIT_ITEM = 'lutti-wheel/sections/EDIT_ITEM';
-const REMOVE_ITEM = 'lutti-wheel/sections/REMOVE_ITEM';
-const UPDATE_SELECTED_INDEX = 'lutti-wheel/sections/UPDATE_SELECTED_INDEX';
-const RESET_SELECTED_INDEXES = 'lutti-wheel/sections/RESET_SELECTED_INDEXES';
-const UPDATE_ROTATION = 'lutti-wheel/sections/UPDATE_ROTATION';
-const RESET = 'lutti-wheel/sections/RESET';
-const TOOGLE_ITEM_SELECTION = 'lutti-wheel/sections/TOOGLE_ITEM_SELECTION';
-const LOAD_PRESET = 'lutti-wheel/sections/LOAD_PRESET';
+const ADD_ITEM = 'lutti-wheel/setups/ADD_ITEM';
+const EDIT_ITEM = 'lutti-wheel/setups/EDIT_ITEM';
+const REMOVE_ITEM = 'lutti-wheel/setups/REMOVE_ITEM';
+const UPDATE_SELECTED_INDEX = 'lutti-wheel/setups/UPDATE_SELECTED_INDEX';
+const RESET_SELECTED_INDEXES = 'lutti-wheel/setups/RESET_SELECTED_INDEXES';
+const UPDATE_ROTATION = 'lutti-wheel/setups/UPDATE_ROTATION';
+const RESET = 'lutti-wheel/setups/RESET';
+const TOOGLE_ITEM_SELECTION = 'lutti-wheel/setups/TOOGLE_ITEM_SELECTION';
+const LOAD_PRESET = 'lutti-wheel/setups/LOAD_PRESET';
+const RETITLE_SETUP = 'lutti-wheel/setups/RETITLE_SETUP';
 
 // Default State
 const defaultState = {
@@ -17,6 +18,7 @@ const defaultState = {
       selectedIndex: 0,
       selectedIndexes: [],
       rotation: 90,
+      title: 'Test setup',
       data: [
         {
           label: 'section 1',
@@ -178,6 +180,19 @@ export default function reducer(state = defaultState, action) {
       };
     }
 
+    case RETITLE_SETUP: {
+      return {
+        ...state,
+        byId: {
+          ...state.byId,
+          [state.activeId]: {
+            ...state.byId[state.activeId],
+            title: action.title,
+          },
+        },
+      };
+    }
+
     default: {
       return state;
     }
@@ -229,4 +244,9 @@ export const toogleItemSelection = index => ({
 export const loadPreset = data => ({
   type: LOAD_PRESET,
   data,
+});
+
+export const retitleSetup = title => ({
+  type: RETITLE_SETUP,
+  title,
 });

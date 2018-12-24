@@ -18,12 +18,7 @@ class EditSectionForm extends React.Component {
     sectionsLength: 0,
   };
 
-  constructor(props) {
-    super(props);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  onSubmit(event) {
+  onSubmit = event => {
     event.preventDefault();
 
     return this.props.editItem({
@@ -31,37 +26,35 @@ class EditSectionForm extends React.Component {
       label: this.label.value,
       color: this.color.value,
     });
-  }
+  };
 
-  render() {
-    return (
-      <Wrapper onSubmit={this.onSubmit}>
-        <SectionInput
-          onSubmit={this.onSubmit}
-          text={{
-            ref: input => (this.label = input),
-            defaultValue: this.props.section.label,
-          }}
-          color={{
-            ref: input => (this.color = input),
-            defaultValue: this.props.section.color,
-          }}
-        />
+  render = () => (
+    <Wrapper onSubmit={this.onSubmit}>
+      <SectionInput
+        onSubmit={this.onSubmit}
+        text={{
+          ref: input => (this.label = input),
+          defaultValue: this.props.section.label,
+        }}
+        color={{
+          ref: input => (this.color = input),
+          defaultValue: this.props.section.color,
+        }}
+      />
 
-        <Spacer width="10px" />
+      <Spacer width="10px" />
 
-        <Checkbox onchange={() => this.props.toogleItemSelection()} checked={!this.props.disabled} />
+      <Checkbox onchange={() => this.props.toogleItemSelection()} checked={!this.props.disabled} />
 
-        <Spacer width="5px" />
+      <Spacer width="5px" />
 
-        {this.props.sectionsLength > 2 && (
-          <TrashButton type="button" onClick={() => this.props.removeItem()}>
-            <FaTrash />
-          </TrashButton>
-        )}
-      </Wrapper>
-    );
-  }
+      {this.props.sectionsLength > 2 && (
+        <TrashButton type="button" onClick={() => this.props.removeItem()}>
+          <FaTrash />
+        </TrashButton>
+      )}
+    </Wrapper>
+  );
 }
 
 export default EditSectionForm;
