@@ -3,13 +3,18 @@ import { connect } from 'react-redux';
 import * as sectionsActions from '../ducks/setups';
 import Wheel from '../components/Wheel';
 
-const mapStatetoProps = state => ({
-  sections: state.setups.data,
-  selectedIndex: state.setups.selectedIndex,
-  selectedIndexes: state.setups.selectedIndexes,
-  rotation: state.setups.rotation,
-  soundOn: state.ui.soundOn,
-});
+const mapStatetoProps = state => {
+  const activeSetupId = state.setups.activeId;
+  const activeSetup = state.setups.byId[activeSetupId];
+
+  return {
+    sections: activeSetup.data,
+    selectedIndex: activeSetup.selectedIndex,
+    selectedIndexes: activeSetup.selectedIndexes,
+    rotation: activeSetup.rotation,
+    soundOn: state.ui.soundOn,
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   updateSelectedIndex: index => dispatch(sectionsActions.updateSelectedIndex(index)),

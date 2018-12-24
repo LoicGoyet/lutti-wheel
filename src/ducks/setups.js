@@ -11,182 +11,222 @@ const LOAD_PRESET = 'lutti-wheel/sections/LOAD_PRESET';
 
 // Default State
 const defaultState = {
-  selectedIndex: 0,
-  selectedIndexes: [],
-  rotation: 90,
-  data: [
-    {
-      label: 'section 1',
-      color: '#0c3953',
+  byId: {
+    0: {
+      id: 0,
+      selectedIndex: 0,
+      selectedIndexes: [],
+      rotation: 90,
+      data: [
+        {
+          label: 'section 1',
+          color: '#0c3953',
+        },
+        {
+          label: 'section 2',
+          color: '#0E147A',
+        },
+      ],
     },
-    {
-      label: 'section 2',
-      color: '#0E147A',
-    },
-    {
-      label: 'section 3',
-      color: '#117ba1',
-    },
-    {
-      label: 'section 4',
-      color: '#189cc5',
-    },
-    {
-      label: 'section 5',
-      color: '#5cb09b',
-    },
-  ],
+  },
+  allIds: [0],
+  activeId: 0,
 };
 
 // Reducer
 export default function reducer(state = defaultState, action) {
   switch (action.type) {
-    case ADD_ITEM:
+    case ADD_ITEM: {
       return {
         ...state,
-        data: [
-          ...state.data,
-          {
-            label: action.label,
-            color: action.color,
+        byId: {
+          ...state.byId,
+          [state.activeId]: {
+            ...state.byId[state.activeId],
+            selectedIndex: 0,
+            selectedIndexes: [],
+            rotation: 90,
+            data: [
+              ...state.byId[state.activeId].data,
+              {
+                label: action.label,
+                color: action.color,
+              },
+            ],
           },
-        ],
-        selectedIndex: defaultState.selectedIndex,
-        selectedIndexes: defaultState.selectedIndexes,
-        rotation: defaultState.rotation,
+        },
       };
+    }
 
-    case EDIT_ITEM:
+    case EDIT_ITEM: {
       return {
         ...state,
-        data: [...state.data.slice(0, action.index), action.item, ...state.data.slice(action.index + 1)],
+        byId: {
+          ...state.byId,
+          [state.activeId]: {
+            ...state.byId[state.activeId],
+            data: [
+              ...state.byId[state.activeId].data.slice(0, action.index),
+              action.item,
+              ...state.byId[state.activeId].data.slice(action.index + 1),
+            ],
+          },
+        },
       };
+    }
 
-    case REMOVE_ITEM:
+    case REMOVE_ITEM: {
       return {
         ...state,
-        data: [
-          // from the start to the one we want to delete
-          ...state.data.slice(0, action.index),
-          // after the deleted one, to the end
-          ...state.data.slice(action.index + 1),
-        ],
-        selectedIndex: defaultState.selectedIndex,
-        selectedIndexes: defaultState.selectedIndexes,
-        rotation: defaultState.rotation,
+        byId: {
+          ...state.byId,
+          [state.activeId]: {
+            ...state.byId[state.activeId],
+            selectedIndex: 0,
+            selectedIndexes: [],
+            rotation: 90,
+            data: [
+              // from the start to the one we want to delete
+              ...state.byId[state.activeId].data.slice(0, action.index),
+              // after the deleted one, to the end
+              ...state.byId[state.activeId].data.slice(action.index + 1),
+            ],
+          },
+        },
       };
+    }
 
-    case UPDATE_SELECTED_INDEX:
+    case UPDATE_SELECTED_INDEX: {
       return {
         ...state,
-        selectedIndex: action.index,
-        selectedIndexes: [...state.selectedIndexes, action.index],
+        byId: {
+          ...state.byId,
+          [state.activeId]: {
+            ...state.byId[state.activeId],
+            selectedIndex: action.index,
+            selectedIndexes: [...state.byId[state.activeId].selectedIndexes, action.index],
+          },
+        },
       };
+    }
 
-    case RESET_SELECTED_INDEXES:
+    case RESET_SELECTED_INDEXES: {
       return {
         ...state,
-        selectedIndex: defaultState.selectedIndex,
-        selectedIndexes: defaultState.selectedIndexes,
-        rotation: defaultState.rotation,
+        byId: {
+          ...state.byId,
+          [state.activeId]: {
+            ...state.byId[state.activeId],
+            selectedIndex: 0,
+            selectedIndexes: [],
+            rotation: 90,
+          },
+        },
       };
+    }
 
-    case UPDATE_ROTATION:
+    case UPDATE_ROTATION: {
       return {
         ...state,
-        rotation: action.rotation,
+        byId: {
+          ...state.byId,
+          [state.activeId]: {
+            ...state.byId[state.activeId],
+            rotation: action.rotation,
+          },
+        },
       };
+    }
 
-    case RESET:
+    case RESET: {
       return {
         ...defaultState,
       };
+    }
 
-    case TOOGLE_ITEM_SELECTION:
-      // if index is already in state.selectedIndexes
-      if (state.selectedIndexes.indexOf(action.index) >= 0) {
-        return {
-          ...state,
-          selectedIndexes: state.selectedIndexes.filter(index => index !== action.index),
-        };
+    case TOOGLE_ITEM_SELECTION: {
+      // if index is already in selectedIndexes
+      const { selectedIndexes } = state.byId[state.activeId];
+      let newSelectedIndexes = [...selectedIndexes, action.index];
+
+      if (selectedIndexes.indexOf(action.index) >= 0) {
+        newSelectedIndexes = selectedIndexes.filter(index => index !== action.index);
       }
 
       return {
         ...state,
-        selectedIndexes: [...state.selectedIndexes, action.index],
+        byId: {
+          ...state.byId,
+          [state.activeId]: {
+            ...state.byId[state.activeId],
+            selectedIndexes: newSelectedIndexes,
+          },
+        },
       };
+    }
 
-    case LOAD_PRESET:
+    case LOAD_PRESET: {
       return {
         ...state,
-        data: action.data,
+        byId: {
+          ...state.byId,
+          [state.activeId]: {
+            ...state.byId[state.activeId],
+            data: action.data,
+          },
+        },
       };
+    }
 
-    default:
+    default: {
       return state;
+    }
   }
 }
 
 // Action Creators
-export function addItem(label, color) {
-  return {
-    type: ADD_ITEM,
-    label,
-    color,
-  };
-}
+export const addItem = (label, color) => ({
+  type: ADD_ITEM,
+  label,
+  color,
+});
 
-export function editItem(index, item) {
-  return {
-    type: EDIT_ITEM,
-    index,
-    item,
-  };
-}
+export const editItem = (index, item) => ({
+  type: EDIT_ITEM,
+  index,
+  item,
+});
 
-export function removeItem(index) {
-  return {
-    type: REMOVE_ITEM,
-    index,
-  };
-}
+export const removeItem = index => ({
+  type: REMOVE_ITEM,
+  index,
+});
 
-export function updateSelectedIndex(index) {
-  return {
-    type: UPDATE_SELECTED_INDEX,
-    index,
-  };
-}
+export const updateSelectedIndex = index => ({
+  type: UPDATE_SELECTED_INDEX,
+  index,
+});
 
-export function resetSelectedIndexes() {
-  return {
-    type: RESET_SELECTED_INDEXES,
-  };
-}
+export const resetSelectedIndexes = setupId => ({
+  type: RESET_SELECTED_INDEXES,
+  setupId,
+});
 
-export function updateRotation(rotation) {
-  return {
-    type: UPDATE_ROTATION,
-    rotation,
-  };
-}
+export const updateRotation = rotation => ({
+  type: UPDATE_ROTATION,
+  rotation,
+});
 
-export function reset() {
-  return {
-    type: RESET,
-  };
-}
+export const reset = () => ({
+  type: RESET,
+});
 
-export function toogleItemSelection(index) {
-  return {
-    type: TOOGLE_ITEM_SELECTION,
-    index,
-  };
-}
+export const toogleItemSelection = index => ({
+  type: TOOGLE_ITEM_SELECTION,
+  index,
+});
 
-export function loadPreset(data) {
-  return {
-    type: LOAD_PRESET,
-    data,
-  };
-}
+export const loadPreset = data => ({
+  type: LOAD_PRESET,
+  data,
+});
