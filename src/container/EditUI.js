@@ -1,13 +1,13 @@
 import { connect } from 'react-redux';
 
 import * as uiActions from '../ducks/ui';
-import * as sectionsActions from '../ducks/sections';
+import * as sectionsActions from '../ducks/setups';
 import UIForm from '../components/UIForm';
 
 const mapStatetoProps = state => ({
   streamMode: state.ui.streamMode,
   soundOn: state.ui.soundOn,
-  selectedIndexes: state.sections.selectedIndexes,
+  selectedIndexes: state.setups.selectedIndexes,
 });
 
 const mapDispatchToProps = dispatch => ({

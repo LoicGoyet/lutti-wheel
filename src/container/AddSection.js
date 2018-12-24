@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import * as sectionsActions from '../ducks/sections';
+import * as sectionsActions from '../ducks/setups';
 import AddSectionForm from '../components/AddSectionForm';
 
 const defaultColors = [
@@ -19,8 +19,8 @@ const defaultColors = [
 ];
 
 const mapStatetoProps = (state, ownProps) => ({
-  section: state.sections.data[ownProps.index],
-  defaultColor: defaultColors[state.sections.data.length % defaultColors.length],
+  section: state.setups.data[ownProps.index],
+  defaultColor: defaultColors[state.setups.data.length % defaultColors.length],
 });
 
 const mapDispatchToProps = dispatch => ({

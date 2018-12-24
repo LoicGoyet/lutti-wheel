@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import sections from './sections';
+import setups from './setups';
 import ui from './ui';
 
 export default combineReducers({
-  sections,
+  setups,
   ui,
 });

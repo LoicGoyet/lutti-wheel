@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 
-import EditList from '../components/EditList';
+import ListSections from '../components/ListSections';
 
 const mapStatetoProps = state => ({
-  sections: state.sections.data,
+  sections: state.setups.data,
 });
 
-export default connect(mapStatetoProps)(EditList);
+export default connect(mapStatetoProps)(ListSections);

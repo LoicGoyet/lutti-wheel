@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import EditSection from '../../container/EditSection';
 import AddSection from '../../container/AddSection';
 
-const EditList = props => (
+const ListSections = props => (
   <Wrapper>
     {props.sections.length > 0 &&
       props.sections.map((section, index) => <EditSection key={`${index}-${section.label}`} index={index} />)}
@@ -14,11 +14,11 @@ const EditList = props => (
   </Wrapper>
 );
 
-EditList.propTypes = {
+ListSections.propTypes = {
   sections: PropTypes.array.isRequired,
 };
 
-export default EditList;
+export default ListSections;
 
 const Wrapper = styled.section`
   flex-grow: 1;

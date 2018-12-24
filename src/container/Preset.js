@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import * as sectionsActions from '../ducks/sections';
+import * as sectionsActions from '../ducks/setups';
 import Button from '../components/Button';
 
 const mapStatetoProps = () => ({

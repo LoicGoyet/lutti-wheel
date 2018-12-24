@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 
-import * as sectionsActions from '../ducks/sections';
+import * as sectionsActions from '../ducks/setups';
 import EditSectionForm from '../components/EditSectionForm';
 
 const mapStatetoProps = (state, ownProps) => ({
-  section: state.sections.data[ownProps.index],
-  sectionsLength: state.sections.data.length,
-  disabled: state.sections.selectedIndexes.indexOf(ownProps.index) >= 0,
+  section: state.setups.data[ownProps.index],
+  sectionsLength: state.setups.data.length,
+  disabled: state.setups.selectedIndexes.indexOf(ownProps.index) >= 0,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

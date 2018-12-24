@@ -1,13 +1,13 @@
 import { connect } from 'react-redux';
 
-import * as sectionsActions from '../ducks/sections';
+import * as sectionsActions from '../ducks/setups';
 import Wheel from '../components/Wheel';
 
 const mapStatetoProps = state => ({
-  sections: state.sections.data,
-  selectedIndex: state.sections.selectedIndex,
-  selectedIndexes: state.sections.selectedIndexes,
-  rotation: state.sections.rotation,
+  sections: state.setups.data,
+  selectedIndex: state.setups.selectedIndex,
+  selectedIndexes: state.setups.selectedIndexes,
+  rotation: state.setups.rotation,
   soundOn: state.ui.soundOn,
 });
 
