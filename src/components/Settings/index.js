@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 import Panel from '../Panel';
 import ListSections from '../../container/ListSections';
-import RemoveAllSections from '../../container/RemoveAllSections';
 
 const Settings = () => (
   <Panel>
@@ -11,9 +10,6 @@ const Settings = () => (
       <ListSections />
 
       <Footer>
-        <ButtonsRow>
-          <RemoveAllSections />
-        </ButtonsRow>
       </Footer>
     </Column>
   </Panel>

@@ -5,7 +5,6 @@ const REMOVE_ITEM = 'lutti-wheel/setups/REMOVE_ITEM';
 const UPDATE_SELECTED_INDEX = 'lutti-wheel/setups/UPDATE_SELECTED_INDEX';
 const RESET_SELECTED_INDEXES = 'lutti-wheel/setups/RESET_SELECTED_INDEXES';
 const UPDATE_ROTATION = 'lutti-wheel/setups/UPDATE_ROTATION';
-const RESET = 'lutti-wheel/setups/RESET';
 const TOOGLE_ITEM_SELECTION = 'lutti-wheel/setups/TOOGLE_ITEM_SELECTION';
 const RETITLE_SETUP = 'lutti-wheel/setups/RETITLE_SETUP';
 
@@ -139,12 +138,6 @@ export default function reducer(state = defaultState, action) {
       };
     }
 
-    case RESET: {
-      return {
-        ...defaultState,
-      };
-    }
-
     case TOOGLE_ITEM_SELECTION: {
       // if index is already in selectedIndexes
       const { selectedIndexes } = state.byId[state.activeId];
@@ -216,10 +209,6 @@ export const resetSelectedIndexes = setupId => ({
 export const updateRotation = rotation => ({
   type: UPDATE_ROTATION,
   rotation,
-});
-
-export const reset = () => ({
-  type: RESET,
 });
 
 export const toogleItemSelection = index => ({
