@@ -13,9 +13,11 @@ const ListSections = props => (
     <TitleRow>
       <TitleInput value={props.title} onChange={e => props.retitleSetup(e.target.value)} />
 
-      <RemoveButton>
-        <FaTrashO />
-      </RemoveButton>
+      {props.hasSeveralSetups && (
+        <RemoveButton onClick={props.removeActiveSetup}>
+          <FaTrashO />
+        </RemoveButton>
+      )}
     </TitleRow>
 
     {props.sections.length > 0 &&
@@ -29,6 +31,8 @@ ListSections.propTypes = {
   sections: PropTypes.array.isRequired,
   title: PropTypes.string.isRequired,
   retitleSetup: PropTypes.func.isRequired,
+  removeActiveSetup: PropTypes.func.isRequired,
+  hasSeveralSetups: PropTypes.bool.isRequired,
 };
 
 export default ListSections;

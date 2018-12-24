@@ -11,11 +11,13 @@ const mapStatetoProps = state => {
   return {
     title: activeSetup.title,
     sections: activeSetup.data,
+    hasSeveralSetups: state.setups.allIds.length > 1,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   retitleSetup: bindActionCreators(sectionsActions.retitleSetup, dispatch),
+  removeActiveSetup: bindActionCreators(sectionsActions.removeActiveSetup, dispatch),
 });
 
 export default connect(mapStatetoProps, mapDispatchToProps)(ListSections);

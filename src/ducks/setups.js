@@ -10,6 +10,7 @@ const RETITLE_SETUP = 'lutti-wheel/setups/RETITLE_SETUP';
 
 const ADD_SETUP = 'lutti-wheel/setups/ADD_SETUP';
 const PICK_SETUP = 'lutti-wheel/setups/PICK_SETUP';
+const REMOVE_ACTIVE_SETUP = 'lutti-wheel/setups/REMOVE_ACTIVE_SETUP';
 
 // Default State
 const defaultState = {
@@ -180,6 +181,22 @@ export default function reducer(state = defaultState, action) {
       };
     }
 
+    case REMOVE_ACTIVE_SETUP: {
+      const allIds = state.allIds.filter(setupId => setupId !== state.activeId);
+      return {
+        ...state,
+        byId: allIds.reduce(
+          (acc, setupId) => ({
+            ...acc,
+            [setupId]: state.byId[setupId],
+          }),
+          {}
+        ),
+        allIds,
+        activeId: allIds[0],
+      };
+    }
+
     case RETITLE_SETUP: {
       return {
         ...state,
@@ -290,4 +307,8 @@ export const addSetup = () => ({
 export const pickSetup = setupId => ({
   type: PICK_SETUP,
   setupId,
+});
+
+export const removeActiveSetup = () => ({
+  type: REMOVE_ACTIVE_SETUP,
 });
