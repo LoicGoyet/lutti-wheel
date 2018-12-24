@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Panel from '../Panel';
 import ListSections from '../../container/ListSections';
 import AddSetup from '../../container/AddSetup';
+import PickSetup from '../../container/PickSetup';
 
 const Settings = () => (
   <Panel>
@@ -12,6 +13,7 @@ const Settings = () => (
 
       <Footer>
         <AddSetup />
+        <PickSetup />
       </Footer>
     </Column>
   </Panel>

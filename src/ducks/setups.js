@@ -9,6 +9,7 @@ const TOOGLE_ITEM_SELECTION = 'lutti-wheel/setups/TOOGLE_ITEM_SELECTION';
 const RETITLE_SETUP = 'lutti-wheel/setups/RETITLE_SETUP';
 
 const ADD_SETUP = 'lutti-wheel/setups/ADD_SETUP';
+const PICK_SETUP = 'lutti-wheel/setups/PICK_SETUP';
 
 // Default State
 const defaultState = {
@@ -63,9 +64,9 @@ export default function reducer(state = defaultState, action) {
           ...state.byId,
           [state.activeId]: {
             ...state.byId[state.activeId],
-            selectedIndex: 0,
-            selectedIndexes: [],
-            rotation: 90,
+            selectedIndex: freshSetup.selectedIndex,
+            selectedIndexes: freshSetup.selectedIndexes,
+            rotation: freshSetup.rotation,
             data: [
               ...state.byId[state.activeId].data,
               {
@@ -137,9 +138,9 @@ export default function reducer(state = defaultState, action) {
           ...state.byId,
           [state.activeId]: {
             ...state.byId[state.activeId],
-            selectedIndex: 0,
-            selectedIndexes: [],
-            rotation: 90,
+            selectedIndex: freshSetup.selectedIndex,
+            selectedIndexes: freshSetup.selectedIndexes,
+            rotation: freshSetup.rotation,
           },
         },
       };
@@ -200,6 +201,12 @@ export default function reducer(state = defaultState, action) {
         ...state,
         byId: {
           ...state.byId,
+          [state.activeId]: {
+            ...state.byId[state.activeId],
+            selectedIndex: freshSetup.selectedIndex,
+            selectedIndexes: freshSetup.selectedIndexes,
+            rotation: freshSetup.rotation,
+          },
           [id]: {
             ...freshSetup,
             title: `setup ${id}`,
@@ -208,6 +215,22 @@ export default function reducer(state = defaultState, action) {
         },
         allIds: [...state.allIds, id],
         activeId: id,
+      };
+    }
+
+    case PICK_SETUP: {
+      return {
+        ...state,
+        byId: {
+          ...state.byId,
+          [state.activeId]: {
+            ...state.byId[state.activeId],
+            selectedIndex: freshSetup.selectedIndex,
+            selectedIndexes: freshSetup.selectedIndexes,
+            rotation: freshSetup.rotation,
+          },
+        },
+        activeId: action.setupId,
       };
     }
 
@@ -262,4 +285,9 @@ export const retitleSetup = title => ({
 
 export const addSetup = () => ({
   type: ADD_SETUP,
+});
+
+export const pickSetup = setupId => ({
+  type: PICK_SETUP,
+  setupId,
 });

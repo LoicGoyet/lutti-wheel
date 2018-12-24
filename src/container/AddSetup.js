@@ -5,7 +5,7 @@ import * as sectionsActions from '../ducks/setups';
 import Button from '../components/Button';
 
 const mapStatetoProps = () => ({
-  children: 'Add section',
+  children: 'Add setup',
 });
 
 const mapDispatchToProps = dispatch => ({
