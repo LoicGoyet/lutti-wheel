@@ -100,7 +100,6 @@ const Group = styled.div`
 
 const TextInput = styled.input`
   flex-grow: 1;
-  padding: 0;
   border: 0;
   padding: 0 15px;
   height: 38px;

@@ -14,7 +14,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  onClick: void 0,
+  onClick: undefined,
 };
 
 export default Button;
