@@ -126,7 +126,9 @@ export default function reducer(state = defaultState, action) {
           [state.activeId]: {
             ...state.byId[state.activeId],
             selectedIndex: action.index,
-            selectedIndexes: [...state.byId[state.activeId].selectedIndexes, action.index],
+            selectedIndexes: state.byId[state.activeId].selectedIndexes
+              ? [...state.byId[state.activeId].selectedIndexes, action.index]
+              : [action.index],
           },
         },
       };

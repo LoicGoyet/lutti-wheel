@@ -14,11 +14,15 @@ class Wheel extends React.Component {
     turnsByShuffle: PropTypes.number,
     size: PropTypes.number,
     selectedIndex: PropTypes.number.isRequired,
-    selectedIndexes: PropTypes.array.isRequired,
+    selectedIndexes: PropTypes.array,
     updateSelectedIndex: PropTypes.func.isRequired,
     updateRotation: PropTypes.func.isRequired,
     rotation: PropTypes.number,
     soundOn: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    selectedIndexes: [],
   };
 
   static defaultProps = {
@@ -41,7 +45,9 @@ class Wheel extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.selectedIndexes.length === 0) {
+    const { selectedIndexes } = nextProps;
+
+    if (selectedIndexes && selectedIndexes.length === 0) {
       this.setState({ highlightSelected: false });
     }
   }
@@ -59,8 +65,8 @@ class Wheel extends React.Component {
     this.setState({ highlightSelected: false });
 
     const previousSelectedIndex = this.props.selectedIndex;
-    const possibleSections = this.props.sections.filter(
-      (section, index) => !this.props.selectedIndexes.includes(index)
+    const possibleSections = this.props.sections.filter((section, index) =>
+      this.props.selectedIndexes ? !this.props.selectedIndexes.includes(index) : true
     );
 
     const selectedSection = possibleSections[Math.floor(Math.random() * Math.floor(possibleSections.length))];
@@ -73,17 +79,19 @@ class Wheel extends React.Component {
     this.props.updateRotation(rotation);
 
     return setTimeout(() => {
-      this.button.blur();
+      if (this.button) this.button.blur();
       this.setState({ highlightSelected: true });
     }, 7000);
   }
 
   render() {
+    const { selectedIndexes = [] } = this.props;
+
     return (
       <Wrapper size={this.props.size}>
         <PicoImage src={Pico} />
 
-        {this.props.selectedIndexes.length < this.props.sections.length && (
+        {selectedIndexes && selectedIndexes.length < this.props.sections.length && (
           <SpinButton
             onClick={this.shuffleSection}
             reference={button => {
@@ -92,7 +100,7 @@ class Wheel extends React.Component {
           />
         )}
 
-        {this.props.selectedIndexes.length >= this.props.sections.length && <SpinButtonPlaceholder />}
+        {selectedIndexes && selectedIndexes.length >= this.props.sections.length && <SpinButtonPlaceholder />}
 
         <Sound volume={this.props.soundOn ? 100 : 0} url={RollingSound} playStatus={this.state.playSound} />
 
@@ -105,7 +113,7 @@ class Wheel extends React.Component {
               length={this.props.sections.length}
               wheelSize={this.props.size}
               downlight={this.state.highlightSelected && this.props.selectedIndex !== index}
-              disabled={this.props.selectedIndexes.includes(index) && this.props.selectedIndex !== index}
+              disabled={selectedIndexes.includes(index) && this.props.selectedIndex !== index}
             />
           ))}
         </Circle>

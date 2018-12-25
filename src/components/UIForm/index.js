@@ -35,8 +35,12 @@ UIForm.propTypes = {
   soundOn: PropTypes.bool.isRequired,
   toggleStreamMode: PropTypes.func.isRequired,
   toggleSoundOn: PropTypes.func.isRequired,
-  selectedIndexes: PropTypes.array.isRequired,
+  selectedIndexes: PropTypes.array,
   resetSelectedIndexes: PropTypes.func.isRequired,
+};
+
+UIForm.defaultProps = {
+  selectedIndexes: [],
 };
 
 export default UIForm;
@@ -63,7 +67,6 @@ const Button = styled.button`
   display: flex;
   align-items: center;
   cursor: pointer;
-  // font-weight: 700;
 
   svg {
     margin-right: 0.5em;

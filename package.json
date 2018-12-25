@@ -1,48 +1,47 @@
 {
-  "name": "lutti-wheel",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
+  "name": "lutti-wheel2",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "prop-types": "^15.6.1",
+    "firebase": "^5.7.1",
+    "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-icons": "^2.2.7",
-    "react-redux": "^5.0.7",
+    "react-redux": "^6.0.0",
+    "react-scripts": "2.1.2",
     "react-sound": "^1.1.0",
-    "redux": "^3.7.2",
-    "redux-devtools-extension": "^2.13.2",
+    "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.7",
+    "redux-saga": "^0.16.2",
     "styled-components": "^3.2.3"
   },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-eslint": "^8.2.2",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-import": "^2.9.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-prettier": "^2.6.0",
-    "eslint-plugin-react": "^7.7.0",
-    "husky": "^0.15.0-rc.13",
-    "parcel-bundler": ">=1.10.0",
-    "prettier": "^1.11.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-plugin-react": "^7.11.1",
+    "prettier": "^1.15.3",
     "stylelint": "^9.9.0",
     "stylelint-config-recommended": "^2.1.0",
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-processor-styled-components": "^1.5.1"
-  },
-  "scripts": {
-    "start": "parcel index.html --out-dir serve",
-    "make-prod": "parcel build index.html --public-url ./"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn make-prod && git add dist/"
-    }
   }
 }

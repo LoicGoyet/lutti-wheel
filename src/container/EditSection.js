@@ -6,11 +6,12 @@ import EditSectionForm from '../components/EditSectionForm';
 const mapStatetoProps = (state, ownProps) => {
   const activeSetupId = state.setups.activeId;
   const activeSetup = state.setups.byId[activeSetupId];
+  const { selectedIndexes } = activeSetup;
 
   return {
     section: activeSetup.data[ownProps.index],
     sectionsLength: activeSetup.data.length,
-    disabled: activeSetup.selectedIndexes.indexOf(ownProps.index) >= 0,
+    disabled: selectedIndexes ? selectedIndexes.indexOf(ownProps.index) >= 0 : false,
   };
 };
 

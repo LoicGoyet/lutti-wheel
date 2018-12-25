@@ -17,7 +17,7 @@ export default MainBackground;
 
 const Wrapper = styled.main`
   background-color: ${props => (props.streamMode ? '#00FF00' : '#292044')};
-  height: 100%;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;

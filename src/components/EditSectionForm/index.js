@@ -61,6 +61,7 @@ export default EditSectionForm;
 
 const Wrapper = styled.form`
   display: flex;
+  margin-bottom: 0.5rem;
 `;
 
 const TrashButton = styled.button`

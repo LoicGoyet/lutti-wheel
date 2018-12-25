@@ -8,13 +8,13 @@ injectGlobal`
         src: url('${OpenSansMedium}');
         font-weight: 400;
     }
-    
+
     @font-face {
         font-family: 'Open Sans';
         src: url('${OpenSansBold}');
         font-weight: 700;
     }
-    
+
     body {
         margin: 0;
         color: #fff;

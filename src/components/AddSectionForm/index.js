@@ -13,63 +13,58 @@ export default class AddSectionForm extends React.Component {
     defaultColor: 'rgb(12, 57, 83)',
   };
 
-  constructor(props) {
-    super(props);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  onSubmit(event) {
+  onSubmit = event => {
     event.preventDefault();
     this.props.addItem(this.label.value, this.color.value);
     return this.form.reset();
   }
 
-  render() {
-    return (
-      <React.Fragment>
-        <Wrapper
-          onSubmit={this.onSubmit}
-          innerRef={form => {
-            this.form = form;
-          }}
-        >
-          <Group>
-            <TextInput
-              type="text"
-              placeholder="new section"
-              innerRef={input => {
-                this.label = input;
-              }}
-              required
-            />
-            <ColorPicker
-              type="color"
-              defaultValue={this.props.defaultColor}
-              innerRef={input => {
-                this.color = input;
-              }}
-            />
-          </Group>
+  render = () => (
+    <React.Fragment>
+      <Wrapper
+        onSubmit={this.onSubmit}
+        innerRef={form => {
+          this.form = form;
+        }}
+      >
+        <Group>
+          <TextInput
+            type="text"
+            placeholder="new section"
+            innerRef={input => {
+              this.label = input;
+            }}
+            required
+          />
+          <ColorPicker
+            type="color"
+            defaultValue={this.props.defaultColor}
+            innerRef={input => {
+              this.color = input;
+            }}
+          />
+        </Group>
 
-          <SubmitButton type="submit">
-            <FaCaretRight />
-          </SubmitButton>
-        </Wrapper>
-      </React.Fragment>
-    );
-  }
+        <SubmitButton type="submit">
+          <FaCaretRight />
+        </SubmitButton>
+      </Wrapper>
+    </React.Fragment>
+  );
 }
 
 const Wrapper = styled.form`
   display: flex;
   margin-bottom: 0;
   flex-shrink: 0;
+  align-items: center;
 `;
 
 const SubmitButton = styled.button`
   margin-left: 10px;
-  height: 40px;
-  width: 40px;
+  margin-right: 5px;
+  height: 30px;
+  width: 30px;
   padding: 0;
   background-color: transparent;
   cursor: pointer;
@@ -77,6 +72,9 @@ const SubmitButton = styled.button`
   font-size: 1.2em;
   color: rgb(43, 31, 67);
   border-radius: 40px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     background-color: rgb(43, 31, 67);
