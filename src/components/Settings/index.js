@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Panel from '../Panel';
 import ListSections from '../../container/ListSections';
 import AddSetupButton from '../../container/AddSetupButton';
-import PickSetup from '../../container/PickSetup';
+import SelectActiveSetup from '../../container/SelectActiveSetup';
 
 const Settings = () => (
   <Panel>
@@ -12,8 +12,8 @@ const Settings = () => (
       <ListSections />
 
       <Footer>
+        <SelectActiveSetup />
         <AddSetupButton />
-        <PickSetup />
       </Footer>
     </Column>
   </Panel>

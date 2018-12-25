@@ -9,7 +9,7 @@ const TOOGLE_ITEM_SELECTION = 'lutti-wheel/setups/TOOGLE_ITEM_SELECTION';
 const RETITLE_SETUP = 'lutti-wheel/setups/RETITLE_SETUP';
 
 const ADD_SETUP = 'lutti-wheel/setups/ADD_SETUP';
-const PICK_SETUP = 'lutti-wheel/setups/PICK_SETUP';
+const SELECT_ACTIVE_SETUP = 'lutti-wheel/setups/SELECT_ACTIVE_SETUP';
 const REMOVE_ACTIVE_SETUP = 'lutti-wheel/setups/REMOVE_ACTIVE_SETUP';
 
 // Default State
@@ -235,7 +235,7 @@ export default function reducer(state = defaultState, action) {
       };
     }
 
-    case PICK_SETUP: {
+    case SELECT_ACTIVE_SETUP: {
       return {
         ...state,
         byId: {
@@ -304,8 +304,8 @@ export const addSetup = () => ({
   type: ADD_SETUP,
 });
 
-export const pickSetup = setupId => ({
-  type: PICK_SETUP,
+export const selectActiveSetup = setupId => ({
+  type: SELECT_ACTIVE_SETUP,
   setupId,
 });
 
