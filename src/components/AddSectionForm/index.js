@@ -17,7 +17,7 @@ export default class AddSectionForm extends React.Component {
     event.preventDefault();
     this.props.addItem(this.label.value, this.color.value);
     return this.form.reset();
-  }
+  };
 
   render = () => (
     <React.Fragment>
@@ -71,7 +71,7 @@ const SubmitButton = styled.button`
   border: 0;
   font-size: 1.2em;
   color: rgb(43, 31, 67);
-  border-radius: 40px;
+  border-radius: 3px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -90,7 +90,7 @@ const Group = styled.div`
   display: flex;
   flex-grow: 1;
   border: 1px solid rgb(43, 31, 67);
-  border-radius: 40px;
+  border-radius: 3px;
   overflow: hidden;
   height: 40px;
   align-items: center;
