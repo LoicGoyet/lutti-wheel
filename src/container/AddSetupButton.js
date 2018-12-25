@@ -2,14 +2,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import * as sectionsActions from '../ducks/setups';
-import Button from '../components/Button';
+import AddSetupButton from '../components/AddSetupButton';
 
-const mapStatetoProps = () => ({
-  children: 'Add setup',
-});
+const mapStatetoProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
   onClick: bindActionCreators(sectionsActions.addSetup, dispatch),
 });
 
-export default connect(mapStatetoProps, mapDispatchToProps)(Button);
+export default connect(mapStatetoProps, mapDispatchToProps)(AddSetupButton);

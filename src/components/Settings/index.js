@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Panel from '../Panel';
 import ListSections from '../../container/ListSections';
-import AddSetup from '../../container/AddSetup';
+import AddSetupButton from '../../container/AddSetupButton';
 import PickSetup from '../../container/PickSetup';
 
 const Settings = () => (
@@ -12,7 +12,7 @@ const Settings = () => (
       <ListSections />
 
       <Footer>
-        <AddSetup />
+        <AddSetupButton />
         <PickSetup />
       </Footer>
     </Column>
