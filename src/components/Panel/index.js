@@ -8,29 +8,25 @@ class Panel extends React.Component {
     children: PropTypes.node.isRequired,
   };
 
-  constructor(props) {
-    super(props);
-    this.toggleOpen = this.toggleOpen.bind(this);
-  }
-
   state = {
-    isOpen: true,
+    isOpen: false,
   };
 
-  toggleOpen() {
-    return this.setState({ isOpen: !this.state.isOpen });
-  }
+  toggleOpen = () => this.setState({ isOpen: !this.state.isOpen });
 
-  render() {
-    return (
+  render = () => (
+    <React.Fragment>
       <Wrapper isOpen={this.state.isOpen}>
         <Trigger onClick={this.toggleOpen}>
           <TiCogOutline />
         </Trigger>
+
         {this.props.children}
       </Wrapper>
-    );
-  }
+
+      <Backdrop isOpen={this.state.isOpen} onClick={this.toggleOpen} />
+    </React.Fragment>
+  );
 }
 
 export default Panel;
@@ -67,4 +63,17 @@ const Trigger = styled.button`
   &:focus {
     outline: 0;
   }
+`;
+
+const Backdrop = styled.div`
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  pointer-events: ${props => (props.isOpen ? 'initial' : 'none')};
+  opacity: ${props => (props.isOpen ? 1 : 0)};
+  transition: opacity 200ms ease-in-out;
 `;

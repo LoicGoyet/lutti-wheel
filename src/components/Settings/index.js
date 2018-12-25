@@ -32,8 +32,3 @@ const Footer = styled.footer`
   background-color: rgba(0, 0, 0, 0.05);
   padding: 20px;
 `;
-
-const ButtonsRow = styled.nav`
-  display: flex;
-  margin-bottom: 10px;
-`;
